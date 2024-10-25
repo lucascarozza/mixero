@@ -16,7 +16,7 @@ const Spotify = {
       window.history.pushState("Access token", null, "/");
       return accessToken;
     }
-    
+
     const redirect = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURL}`;
     window.location = redirect;
   },
@@ -37,6 +37,7 @@ const Spotify = {
           name: t.name,
           artist: t.artists[0].name,
           album: t.album.name,
+          cover: t.album.images[0].url,
           uri: t.uri,
         }));
       });

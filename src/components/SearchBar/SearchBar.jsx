@@ -9,18 +9,37 @@ const SearchBar = (props) => {
     props.onSearch(term);
   }, [props.onSearch, term]);
 
-  const handleTermChange = useCallback(({ target }) => {
-    setTerm(target.value);
-  }, []);
+  const handleTermChange = useCallback(
+    ({ target }) => {
+      const sanitizedInput = target.value.replace(
+        /[<>\/\\&"'`@#$%^*()+=~]/g,
+        ""
+      ); // Remove malicious symbols
+      setTerm(sanitizedInput);
+      props.onSearch(sanitizedInput);
+    },
+    [props.onSearch]
+  );
+
+  const handleKeyPress = useCallback(
+    (event) => {
+      if (event.key === "Enter") {
+        passTerm();
+      }
+    },
+    [passTerm]
+  );
 
   return (
-    <div className={styles.SearchBar}>
+    <div className={styles.searchBar}>
       <input
         type="search"
-        placeholder="Search for a song, album or artist"
         onChange={handleTermChange}
+        onKeyDown={handleKeyPress}
+        placeholder={term ? "" : "search for a song, album or artist"}
+        value={term}
+        maxLength="60"
       />
-      <button className={styles.SearchButton} onClick={passTerm}>Search</button>
     </div>
   );
 };

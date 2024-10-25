@@ -1,37 +1,64 @@
 .Track {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(256, 256, 256, 0.8);
+  background-color: var(--track-background-color);
+  border-radius: 1.2rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.6rem;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.Track-action {
+.Track:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+.trackCover {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px; 
+}
+
+.trackAction {
   cursor: pointer;
   padding: 0.5rem;
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   transition: color 0.25s;
   border: 0px;
   background-color: rgba(0, 0, 0, 0);
-  color: #fff;
+  color: var(--primary-text-color);
 }
 
-.Track-action:hover {
-  color: rgba(265, 265, 265, 0.5);
+.removeTrack:hover {
+  color: var(--error-accent-color);
 }
 
-.Track-information {
+.addTrack:hover {
+  color: var(--spotify-green);
+}
+
+.trackContainer {
+  align-items: center;
   flex-grow: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   height: 72px;
 }
 
-.Track-information h3 {
+.trackContainer h3 {
   margin-bottom: 0.22rem;
 }
 
-.Track-information p {
+.trackContainer p {
+  margin-top: 0.3rem;
   font-size: 0.83rem;
   font-weight: 300;
   color: rgba(256, 256, 256, 0.8);
+}
+
+.trackContainer img {
+  border-radius: 0.3rem;
+  box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.3);
+  height: 3.8rem;
+  width: 3.8rem;
+  margin-right: 0.9rem;
 }

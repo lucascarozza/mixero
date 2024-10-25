@@ -1,24 +1,50 @@
-.SearchResults {
-    width: 50%;
-    height: 950px;
-    overflow-y: scroll;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 20px;
+.container {
+  border-radius: var(--container-border-radius);
+  overflow: hidden;
+  width: 30rem;
+  min-height: 15rem;
 }
 
-::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
+.searchResults {
+  /* Appaerance */
+  background: var(--container-background-color);
+  box-shadow: var(--container-box-shadow);
+  backdrop-filter: var(--container-backdrop-filter);
+  -webkit-backdrop-filter: var(--container-backdrop-filter);
+  border-radius: var(--container-border-radius);
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  /* Proportions */
+  max-height: 40rem;
+  min-height: 15rem;
+  padding: 1rem;
+}
+
+.searchResultsTitle {
+  color: var(--supporting-color);
+  text-align: center;
+  padding: 1rem 0 0.9rem 0;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  color: var(--primary-text-color);
+}
+
+.placeholder {
+  align-items: center;
+  color: var(--supporting-color);
+  display: flex;
+  font-family: var(--primary-font-family);
+  font-size: 1.5rem;
+  height: 13rem;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 1020px) {
-    .SearchResults {
-        width: 90%;
-        margin-bottom: 2rem;
-    }
+  .SearchResults {
+    width: 90%;
+    margin-bottom: 2rem;
+  }
 }

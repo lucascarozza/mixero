@@ -1,0 +1,12 @@
+header {
+  width: 100vw;
+  display: inline-flex;
+  justify-content: center;
+}
+
+h1 {
+  color: #fff;
+  font-family: var(--primary-font-family);
+  font-size: 3rem;
+  padding: 8rem 0 4rem 0;
+}

@@ -14,26 +14,43 @@ const Track = (props) => {
   const renderAction = () => {
     if (props.isRemoval) {
       return (
-        <button className={styles["Track-action"]} onClick={passTrackToRemove}>
-          -
+        <button
+          className={`${styles.trackAction} ${styles.removeTrack}`}
+          onClick={passTrackToRemove}
+        >
+          –
         </button>
       );
     } else {
       return (
-        <button className={styles["Track-action"]} onClick={passTrack}>
+        <button
+          className={`${styles.trackAction} ${styles.addTrack}`}
+          onClick={passTrack}
+        >
           +
         </button>
       );
     }
   };
 
+  const handleClick = () => {
+    if (props.isRemoval) {
+      passTrackToRemove();
+    } else {
+      passTrack();
+    }
+  };
+
   return (
     <div className={styles.Track}>
-      <div className={styles["Track-information"]}>
-        <h3>{props.track.name}</h3>
-        <p>
-          {props.track.artist} | {props.track.album}
-        </p>
+      <div className={styles.trackContainer} onClick={handleClick}>
+        <img src={props.track.cover} alt={`${props.track.name} cover`} />
+        <div className={styles.trackInfo}>
+          <h3>{props.track.name}</h3>
+          <p>
+            {props.track.artist} | {props.track.album}
+          </p>
+        </div>
       </div>
       {renderAction()}
     </div>

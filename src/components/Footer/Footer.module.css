@@ -1,0 +1,22 @@
+footer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.copyright {
+  color: var(--supporting-color);
+  font-family: var(--primary-font-family);
+  line-height: 1.8rem;
+}
+
+.copyright a {
+  color: var(--spotify-green);
+  transition: color 0.25s;
+}
+
+.copyright a:hover {
+  color: var(--secondary-green);
+}

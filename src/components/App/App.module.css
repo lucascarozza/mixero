@@ -1,44 +1,28 @@
-body,
-html,
-#root {
-  height: 100%;
-}
-
-html {
-  font-size: 18px;
-}
-
-h1 {
-  padding: 0.77rem 0;
-  background-color: #010c3f;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.88rem;
-  color: #fff;
-}
-
-h1 .highlight {
-  color: #6c41ec;
-}
-
 h2 {
-  font-family: "Poppins", sans-serif;
+  color: var(--primary-text-color);
+  font-family: var(--primary-font-family);
   font-size: 1.55rem;
 }
 
 .app {
-  height: 100%;
-  padding: 0 17% 10% 17%;
-  background-color: rgb(20, 20, 20);
-  font-family: "Work Sans", sans-serif;
-  font-weight: 500;
-  color: #fff;
+  color: var(--primary-text-color);
+  font-family: var(--primary-font-family);
+  width: 100vw;
 }
 
-.playlist {
+.container {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  gap: 1rem;
+  justify-content: center;
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
 }
 
 @media only screen and (max-width: 1020px) {
