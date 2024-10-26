@@ -1,35 +1,41 @@
 import React from "react";
-
 import styles from "./Playlist.module.css";
-
 import Tracklist from "../Tracklist/Tracklist";
 
-const Playlist = (props) => {
+const Playlist = ({
+  playlistName,
+  playlistTracks,
+  onNameChange,
+  onRemove,
+  onSave,
+}) => {
   const handleNameChange = ({ target }) => {
     const sanitizedInput = target.value.replace(/[<>\/\\&"'`@#$%^*()+=~]/g, ""); // Remove malicious symbols
-    props.onNameChange(sanitizedInput);
+    onNameChange(sanitizedInput);
   };
 
-  const isDisabled =
-    props.playlistTracks.length === 0 || props.playlistName.trim() === "";
+  const isDisabled = playlistTracks.length === 0 || playlistName.trim() === "";
 
   return (
     <div className={styles.container}>
       <div className={styles.playlist}>
         <input
-          value={props.playlistName}
+          value={playlistName}
           onChange={handleNameChange}
-          placeholder={props.playlistName ? "" : "enter a playlist name"}
+          placeholder={playlistName ? "" : "enter a playlist name"}
           maxLength="60"
+          id="playlistName"
+          autoComplete="off"
+          list="off"
         />
         <Tracklist
-          userSearchResults={props.playlistTracks}
-          onRemove={props.onRemove}
+          userSearchResults={playlistTracks}
+          onRemove={onRemove}
           isRemoval
         />
         <button
           className={styles.saveToSpotify}
-          onClick={props.onSave}
+          onClick={onSave}
           disabled={isDisabled}
           title={
             isDisabled ? "Add tracks and a name to save your playlist" : ""
@@ -37,7 +43,7 @@ const Playlist = (props) => {
         >
           Save To Spotify
         </button>
-        {props.playlistName.trim() === "" && (
+        {playlistName.trim() === "" && (
           <p className={styles.warning}>a playlist name is required.</p>
         )}
       </div>

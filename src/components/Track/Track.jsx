@@ -1,54 +1,34 @@
 import React from "react";
-
 import styles from "./Track.module.css";
 
-const Track = (props) => {
+const Track = ({ track, onAdd, onRemove, isRemoval }) => {
   const passTrack = () => {
-    props.onAdd(props.track);
-  };
-
-  const passTrackToRemove = () => {
-    props.onRemove(props.track);
-  };
-
-  const renderAction = () => {
-    if (props.isRemoval) {
-      return (
-        <button
-          className={`${styles.trackAction} ${styles.removeTrack}`}
-          onClick={passTrackToRemove}
-        >
-          –
-        </button>
-      );
+    if (isRemoval) {
+      onRemove(track);
     } else {
-      return (
-        <button
-          className={`${styles.trackAction} ${styles.addTrack}`}
-          onClick={passTrack}
-        >
-          +
-        </button>
-      );
+      onAdd(track);
     }
   };
 
-  const handleClick = () => {
-    if (props.isRemoval) {
-      passTrackToRemove();
-    } else {
-      passTrack();
-    }
-  };
+  const renderAction = () => (
+    <button
+      className={`${styles.trackAction} ${
+        isRemoval ? styles.removeTrack : styles.addTrack
+      }`}
+      onClick={passTrack}
+    >
+      {isRemoval ? "–" : "+"}
+    </button>
+  );
 
   return (
-    <div className={styles.Track}>
-      <div className={styles.trackContainer} onClick={handleClick}>
-        <img src={props.track.cover} alt={`${props.track.name} cover`} />
+    <div className={styles.track}>
+      <div className={styles.trackContainer}>
+        <img src={track.cover} alt={`${track.name} cover`} />
         <div className={styles.trackInfo}>
-          <h3>{props.track.name}</h3>
+          <h3>{track.name}</h3>
           <p>
-            {props.track.artist} | {props.track.album}
+            {track.artist} | {track.album}
           </p>
         </div>
       </div>

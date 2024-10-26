@@ -1,15 +1,12 @@
 footer {
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: center;
-  padding: 2rem 0;
   text-align: center;
-}
-
-.copyright {
+  padding: 2rem 0;
   color: var(--supporting-color);
   font-family: var(--primary-font-family);
-  line-height: 1.8rem;
+  line-height: var(--default-line-height);
 }
 
 .copyright a {

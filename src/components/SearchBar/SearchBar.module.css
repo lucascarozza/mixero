@@ -17,14 +17,16 @@
   height: 3rem;
   padding: 0 1.4rem;
   width: 25rem;
-}
-
-.searchBar input:hover {
   outline: none;
-  background-color: white;
 }
 
+.searchBar input:hover,
 .searchBar input:focus {
   outline: none;
-  background-color: white;
+}
+
+@media only screen and (max-width: 768px) {
+  .searchBar {
+    margin-bottom: 1rem;
+  }
 }

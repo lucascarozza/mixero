@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
 import styles from "./App.module.css";
-
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Playlist from "../Playlist/Playlist";
@@ -50,7 +48,7 @@ const App = () => {
     <div>
       <Header />
       <main>
-        <div className={styles.app}>
+        <div className={styles.content}>
           <SearchBar onSearch={search} />
           <div className={styles.container}>
             <SearchResults

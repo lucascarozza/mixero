@@ -1,13 +1,8 @@
 import React, { useCallback, useState } from "react";
-
 import styles from "./SearchBar.module.css";
 
-const SearchBar = (props) => {
+const SearchBar = ({ onSearch }) => {
   const [term, setTerm] = useState("");
-
-  const passTerm = useCallback(() => {
-    props.onSearch(term);
-  }, [props.onSearch, term]);
 
   const handleTermChange = useCallback(
     ({ target }) => {
@@ -16,18 +11,9 @@ const SearchBar = (props) => {
         ""
       ); // Remove malicious symbols
       setTerm(sanitizedInput);
-      props.onSearch(sanitizedInput);
+      onSearch(sanitizedInput);
     },
-    [props.onSearch]
-  );
-
-  const handleKeyPress = useCallback(
-    (event) => {
-      if (event.key === "Enter") {
-        passTerm();
-      }
-    },
-    [passTerm]
+    [onSearch]
   );
 
   return (
@@ -35,10 +21,12 @@ const SearchBar = (props) => {
       <input
         type="search"
         onChange={handleTermChange}
-        onKeyDown={handleKeyPress}
         placeholder={term ? "" : "search for a song, album or artist"}
         value={term}
         maxLength="60"
+        id="name"
+        autoComplete="off"
+        list="off"
       />
     </div>
   );

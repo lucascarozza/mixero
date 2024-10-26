@@ -1,33 +1,26 @@
-h2 {
+h2,
+.content {
   color: var(--primary-text-color);
   font-family: var(--primary-font-family);
+}
+
+h2 {
   font-size: 1.55rem;
 }
 
-.app {
-  color: var(--primary-text-color);
-  font-family: var(--primary-font-family);
-  width: 100vw;
+.content {
+  width: 100%;
 }
 
 .container {
   display: flex;
-  gap: 1rem;
   justify-content: center;
-  padding-left: 10rem;
-  padding-right: 10rem;
+  gap: 1rem;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1024px) {
   .container {
-    padding-left: 5rem;
-    padding-right: 5rem;
-  }
-}
-
-@media only screen and (max-width: 1020px) {
-  .App-playlist {
+    flex-flow: column wrap;
     align-items: center;
-    flex-direction: column;
   }
 }

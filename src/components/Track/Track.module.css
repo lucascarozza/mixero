@@ -1,4 +1,4 @@
-.Track {
+.track {
   display: flex;
   align-items: center;
   background-color: var(--track-background-color);
@@ -8,15 +8,14 @@
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.Track:hover {
+.track:hover {
   transform: scale(1.02);
-  cursor: pointer;
 }
 
 .trackCover {
   width: 50px;
   height: 50px;
-  border-radius: 4px; 
+  border-radius: 4px;
 }
 
 .trackAction {
@@ -24,7 +23,7 @@
   padding: 0.5rem;
   font-size: 1.5rem;
   transition: color 0.25s;
-  border: 0px;
+  border: 0;
   background-color: rgba(0, 0, 0, 0);
   color: var(--primary-text-color);
 }
@@ -37,15 +36,38 @@
   color: var(--spotify-green);
 }
 
+.trackInfo {
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: 1rem;
+}
+
+.trackInfo::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 5rem;
+  background: linear-gradient(
+    to left,
+    var(--track-background-color),
+    transparent
+  );
+}
+
 .trackContainer {
   align-items: center;
   flex-grow: 1;
   display: flex;
-  height: 72px;
+  height: 4.5rem;
+  width: 0;
+  position: relative;
 }
 
-.trackContainer h3 {
-  margin-bottom: 0.22rem;
+.trackContainer h3,
+.trackContainer p {
+  line-height: 1.3rem;
 }
 
 .trackContainer p {
@@ -60,5 +82,20 @@
   box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.3);
   height: 3.8rem;
   width: 3.8rem;
-  margin-right: 0.9rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .trackContainer h3,
+  .trackContainer p {
+    line-height: 1rem;
+    margin: 0;
+  }
+
+  .trackContainer h3 {
+    font-size: 0.8rem;
+  }
+
+  .trackContainer p {
+    font-size: 0.7rem;
+  }
 }

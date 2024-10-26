@@ -1,19 +1,17 @@
 import React from "react";
-
 import styles from "./Tracklist.module.css";
-
 import Track from "../Track/Track";
 
-const Tracklist = (props) => {
+const Tracklist = ({ userSearchResults, isRemoval, onAdd, onRemove }) => {
   return (
-    <div className={styles.Tracklist}>
-      {props.userSearchResults.map((track) => (
+    <div className={styles.tracklist}>
+      {userSearchResults.map((track) => (
         <Track
-          track={track}
           key={track.id}
-          isRemoval={props.isRemoval}
-          onAdd={props.onAdd}
-          onRemove={props.onRemove}
+          track={track}
+          isRemoval={isRemoval}
+          onAdd={onAdd}
+          onRemove={onRemove}
         />
       ))}
     </div>

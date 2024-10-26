@@ -1,24 +1,27 @@
 import React from "react";
-
 import styles from "./SearchResults.module.css";
-
 import Tracklist from "../Tracklist/Tracklist";
 
-const SearchResults = (props) => {
+const SearchResults = ({ userSearchResults, searchTerm, onAdd }) => {
   return (
     <div className={styles.container}>
       <div className={styles.searchResults}>
-        {props.userSearchResults.length > 0 ? (
+        {userSearchResults.length > 0 ? (
           <div>
             <h3 className={styles.searchResultsTitle}>
               here's what we found for{" "}
-              <span className={styles.highlight}>{props.searchTerm}</span>
+              <span className={styles.highlight}>{searchTerm}</span>
             </h3>
             <Tracklist
-              userSearchResults={props.userSearchResults}
+              userSearchResults={userSearchResults}
               isRemoval={false}
-              onAdd={props.onAdd}
+              onAdd={onAdd}
             />
+            <p className={styles.searchResultsFooter}>
+              couldn't find the song you're looking for?
+              <br />
+              try searching something different
+            </p>
           </div>
         ) : (
           <p className={styles.placeholder}>songs will appear here</p>
