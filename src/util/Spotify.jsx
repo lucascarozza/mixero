@@ -1,15 +1,17 @@
+const clientId = import.meta.env.VITE_CLIENT_ID;
+const redirectURL = import.meta.env.VITE_REDIRECT_URL;
+const spotifyAuthURL = import.meta.env.VITE_SPOTIFY_AUTH_URL;
+const apiBaseURL = import.meta.env.VITE_API_BASE_URL;
+const scope = import.meta.env.VITE_SCOPE;
+
 let accessToken;
 let tokenExpirationTime;
-
-const clientId = "93b6af46a9c844dd9338c06740ed3a2b";
-const redirectURL = "http://localhost:5173/";
 
 const Spotify = {
   getAccessToken() {
     console.log("Checking access token...");
 
     if (accessToken && new Date().getTime() < tokenExpirationTime) {
-      console.log("Using existing token:", accessToken);
       return accessToken;
     }
 
@@ -30,19 +32,16 @@ const Spotify = {
       return accessToken;
     }
 
-    const redirect = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURL}`;
+    const redirect = `${spotifyAuthURL}?client_id=${clientId}&response_type=token&scope=${scope}&redirect_uri=${redirectURL}`;
     window.location.replace(redirect);
   },
 
   async search(term) {
     accessToken = Spotify.getAccessToken();
-    const response = await fetch(
-      `https://api.spotify.com/v1/search?type=track&q=${term}`,
-      {
-        method: "GET",
-        headers: { Authorization: `Bearer ${accessToken}` },
-      }
-    );
+    const response = await fetch(`${apiBaseURL}/search?type=track&q=${term}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
     const jsonResponse = await response.json();
     if (!jsonResponse) {
       console.error("Response error");
@@ -64,24 +63,21 @@ const Spotify = {
     const aToken = Spotify.getAccessToken();
     const savePlaylistHeader = { Authorization: `Bearer ${aToken}` };
 
-    const response = await fetch(`https://api.spotify.com/v1/me`, {
+    const response = await fetch(`${apiBaseURL}/me`, {
       headers: savePlaylistHeader,
     });
     const jsonResponse = await response.json();
     const userId = jsonResponse.id;
 
-    const playlistResponse = await fetch(
-      `https://api.spotify.com/v1/users/${userId}/playlists`,
-      {
-        headers: savePlaylistHeader,
-        method: "POST",
-        body: JSON.stringify({ name }),
-      }
-    );
+    const playlistResponse = await fetch(`${apiBaseURL}/users/${userId}/playlists`, {
+      headers: savePlaylistHeader,
+      method: "POST",
+      body: JSON.stringify({ name }),
+    });
     const playlistJsonResponse = await playlistResponse.json();
     const playlistId = playlistJsonResponse.id;
 
-    await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+    await fetch(`${apiBaseURL}/playlists/${playlistId}/tracks`, {
       headers: savePlaylistHeader,
       method: "POST",
       body: JSON.stringify({ uris: trackURIs }),
