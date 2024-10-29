@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import styles from "./Track.module.css";
+import pause from "../../assets/pause.svg";
+import play from "../../assets/play.svg";
 
 const Track = ({ track, onAdd, onRemove, isRemoval }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(new Audio(track.preview_url));
+
+  const togglePlayPause = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const renderPlayPauseButton = () => (
+    <img
+      src={isPlaying ? pause : play}
+      className={styles.playPauseButton}
+      alt={isPlaying ? "Pause" : "Play"}
+      onClick={togglePlayPause}
+    />
+  );
   const passTrack = () => {
     if (isRemoval) {
       onRemove(track);
@@ -24,7 +47,14 @@ const Track = ({ track, onAdd, onRemove, isRemoval }) => {
   return (
     <div className={styles.track}>
       <div className={styles.trackContainer}>
-        <img src={track.cover} alt={`${track.name} cover`} />
+        <div className={styles.coverContainer}>
+          <img
+            src={track.cover}
+            className={styles.cover}
+            alt={`${track.name} cover`}
+          />
+          {renderPlayPauseButton()}
+        </div>
         <div className={styles.trackInfo}>
           <h3>{track.name}</h3>
           <p>

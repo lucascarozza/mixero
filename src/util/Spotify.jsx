@@ -52,7 +52,7 @@ const Spotify = {
       name: t.name, // -------------------> Track Name
       artist: t.artists[0].name, // ------> Track Artist
       album: t.album.name, // ------------> Track Album
-      cover: t.album.images[0].url, // ---> Track Cover
+      cover: t.album.images[1].url, // ---> Track Cover
       preview_url: t.preview_url, // -----> Track Preview
       uri: t.uri, // ---------------------> Track URI
     }));

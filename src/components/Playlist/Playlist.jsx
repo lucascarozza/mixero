@@ -31,7 +31,7 @@ const Playlist = ({
         <Tracklist
           userSearchResults={playlistTracks}
           onRemove={onRemove}
-          isRemoval
+          isRemoval={true}
         />
         <button
           className={styles.saveToSpotify}
