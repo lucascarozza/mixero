@@ -7,6 +7,7 @@ const Track = ({ track, onAdd, onRemove, isRemoval }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(new Audio(track.preview_url));
 
+  // Play/Pause the preview sample.
   const togglePlayPause = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -17,6 +18,7 @@ const Track = ({ track, onAdd, onRemove, isRemoval }) => {
     setIsPlaying(!isPlaying);
   };
 
+  //  Render Play/Pause button associated with togglePlayPause.
   const renderPlayPauseButton = () => (
     <img
       src={isPlaying ? pause : play}
@@ -25,6 +27,8 @@ const Track = ({ track, onAdd, onRemove, isRemoval }) => {
       onClick={togglePlayPause}
     />
   );
+
+  // Add/Remove track to the Playlist component.
   const passTrack = () => {
     if (isRemoval) {
       onRemove(track);
@@ -33,6 +37,7 @@ const Track = ({ track, onAdd, onRemove, isRemoval }) => {
     }
   };
 
+  // Render Add/Remove button associated with passTrack.
   const renderAction = () => (
     <button
       className={`${styles.trackAction} ${

@@ -3,6 +3,7 @@ const redirectURL = import.meta.env.VITE_REDIRECT_URL;
 const spotifyAuthURL = import.meta.env.VITE_SPOTIFY_AUTH_URL;
 const apiBaseURL = import.meta.env.VITE_API_BASE_URL;
 const scope = import.meta.env.VITE_SCOPE;
+const playlistURL = import.meta.env.VITE_PLAYLIST_URL;
 
 let accessToken;
 let tokenExpirationTime;
@@ -47,13 +48,13 @@ const Spotify = {
       console.error("Response error");
     }
     return jsonResponse.tracks.items.map((t) => ({
-      id: t.id, // -----------------------> Track ID
-      name: t.name, // -------------------> Track Name
-      artist: t.artists[0].name, // ------> Track Artist
-      album: t.album.name, // ------------> Track Album
-      cover: t.album.images[1].url, // ---> Track Cover
-      preview_url: t.preview_url, // -----> Track Preview
-      uri: t.uri, // ---------------------> Track URI
+      id: t.id,
+      name: t.name,
+      artist: t.artists[0].name,
+      album: t.album.name,
+      cover: t.album.images[1].url,
+      preview_url: t.preview_url,
+      uri: t.uri,
     }));
   },
 
@@ -69,11 +70,14 @@ const Spotify = {
     const jsonResponse = await response.json();
     const userId = jsonResponse.id;
 
-    const playlistResponse = await fetch(`${apiBaseURL}/users/${userId}/playlists`, {
-      headers: savePlaylistHeader,
-      method: "POST",
-      body: JSON.stringify({ name }),
-    });
+    const playlistResponse = await fetch(
+      `${apiBaseURL}/users/${userId}/playlists`,
+      {
+        headers: savePlaylistHeader,
+        method: "POST",
+        body: JSON.stringify({ name }),
+      }
+    );
     const playlistJsonResponse = await playlistResponse.json();
     const playlistId = playlistJsonResponse.id;
 
@@ -82,6 +86,33 @@ const Spotify = {
       method: "POST",
       body: JSON.stringify({ uris: trackURIs }),
     });
+  },
+
+  async getTop50Global() {
+    accessToken = Spotify.getAccessToken();
+    const response = await fetch(`${apiBaseURL}/playlists/${playlistURL}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    const textResponse = await response.text();
+    try {
+      const jsonResponse = JSON.parse(textResponse);
+      if (!jsonResponse) {
+        console.error("Response error");
+      }
+      return jsonResponse.items.map((i) => ({
+        id: i.track.id,
+        name: i.track.name,
+        artist: i.track.artists[0].name,
+        album: i.track.album.name,
+        cover: i.track.album.images[1].url,
+        preview_url: i.track.preview_url,
+        uri: i.track.uri,
+      }));
+    } catch (e) {
+      console.error("Error parsing JSON response:", e);
+      return [];
+    }
   },
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./App.module.css";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -13,8 +13,22 @@ const App = () => {
   const [playlistTracks, setPlaylistTracks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Fetch Top 50 Global on initial render
+  useEffect(() => {
+    fetchTop50Global();
+  }, []);
+
+  const fetchTop50Global = async () => {
+    try {
+      const result = await Spotify.getTop50Global();
+      setSearchResults(result);
+    } catch (error) {
+      console.error("Error fetching Top 50 Global:", error);
+    }
+  };
+
   const addTrack = (track) => {
-    if (!playlistTracks.find((t) => t.id === track.id)) {
+    if (!playlistTracks.some((t) => t.id === track.id)) {
       setPlaylistTracks([...playlistTracks, track]);
     }
   };
@@ -27,20 +41,21 @@ const App = () => {
     setPlaylistName(name);
   };
 
-  const savePlaylist = () => {
+  const savePlaylist = async () => {
     const trackURIs = playlistTracks.map((t) => t.uri);
-    Spotify.savePlaylist(playlistName, trackURIs).then(() => {
-      setPlaylistName("New Playlist");
-      setPlaylistTracks([]);
-    });
+    await Spotify.savePlaylist(playlistName, trackURIs);
+    setPlaylistName("New Playlist");
+    setPlaylistTracks([]);
   };
 
   const search = (term) => {
     setSearchTerm(term);
     if (term) {
-      Spotify.search(term).then((result) => setSearchResults(result));
+      Spotify.search(term)
+        .then((result) => setSearchResults(result))
+        .catch((error) => console.error("Error searching tracks:", error));
     } else {
-      setSearchResults([]);
+      fetchTop50Global();
     }
   };
 

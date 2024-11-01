@@ -9,9 +9,16 @@ const SearchResults = ({ userSearchResults, searchTerm, onAdd }) => {
         {userSearchResults.length > 0 ? (
           <div>
             <h3 className={styles.searchResultsTitle}>
-              here's what we found for{" "}
-              <span className={styles.highlight}>{searchTerm}</span>
+              {searchTerm ? (
+                <>
+                  here's what we found for{" "}
+                  <span className={styles.highlight}>{searchTerm}</span>
+                </>
+              ) : (
+                "see what's trending on Spotify"
+              )}
             </h3>
+
             <Tracklist
               userSearchResults={userSearchResults}
               isRemoval={false}
