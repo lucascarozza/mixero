@@ -51,6 +51,17 @@
   box-shadow: inset 0 0 0 0.1rem var(--error-accent-color);
 }
 
+.placeholder {
+  align-items: center;
+  display: flex;
+  color: var(--supporting-color);
+  font-family: var(--primary-font-family);
+  font-size: 1.5rem;
+  text-align: center;
+  height: 5rem;
+  justify-content: center;
+}
+
 .saveToSpotify {
   background-color: var(--spotify-green);
   border: none;

@@ -12,11 +12,7 @@ const App = () => {
   const [playlistName, setPlaylistName] = useState("New Playlist");
   const [playlistTracks, setPlaylistTracks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
-  // Fetch Top 50 Global on initial render
-  useEffect(() => {
-    fetchTop50Global();
-  }, []);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const fetchTop50Global = async () => {
     try {
@@ -26,6 +22,18 @@ const App = () => {
       console.error("Error fetching Top 50 Global:", error);
     }
   };
+
+  useEffect(() => {
+    const token = Spotify.getAccessToken();
+    console.log("Token from getAccessToken:", token);
+
+    if (token) {
+      setIsLoggedIn(true);
+      fetchTop50Global();
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   const addTrack = (track) => {
     if (!playlistTracks.some((t) => t.id === track.id)) {
@@ -64,7 +72,18 @@ const App = () => {
       <Header />
       <main>
         <div className={styles.content}>
-          <SearchBar onSearch={search} />
+          {isLoggedIn ? (
+            <SearchBar onSearch={search} />
+          ) : (
+            <div className={styles.login}>
+              <h3 className={styles.loginText}>
+                log in to Spotify to start exploring
+              </h3>
+              <button className={styles.loginButton} onClick={Spotify.login}>
+                Log In To Spotify
+              </button>
+            </div>
+          )}
           <div className={styles.container}>
             <SearchResults
               userSearchResults={searchResults}

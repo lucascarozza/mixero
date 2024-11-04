@@ -31,7 +31,7 @@ const SearchResults = ({ userSearchResults, searchTerm, onAdd }) => {
             </p>
           </div>
         ) : (
-          <p className={styles.placeholder}>songs will appear here</p>
+          <p className={styles.placeholder}>tracks will appear here</p>
         )}
       </div>
     </div>

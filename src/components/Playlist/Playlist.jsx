@@ -28,11 +28,15 @@ const Playlist = ({
           autoComplete="off"
           list="off"
         />
-        <Tracklist
-          userSearchResults={playlistTracks}
-          onRemove={onRemove}
-          isRemoval={true}
-        />
+        {playlistTracks.length > 0 ? (
+          <Tracklist
+            userSearchResults={playlistTracks}
+            onRemove={onRemove}
+            isRemoval={true}
+          />
+        ) : (
+          <p className={styles.placeholder}>add tracks to get started</p>
+        )}
         <button
           className={styles.saveToSpotify}
           onClick={onSave}

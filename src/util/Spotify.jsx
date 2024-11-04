@@ -11,32 +11,53 @@ let tokenExpirationTime;
 const Spotify = {
   getAccessToken() {
     console.log("Checking access token...");
-
+  
+    // Check if token is still valid.
     if (accessToken && new Date().getTime() < tokenExpirationTime) {
       return accessToken;
     }
-
+  
+    // Check local storage for token and its expiry time.
+    const tokenInStorage = localStorage.getItem('spotify_access_token');
+    const expiryTimeInStorage = localStorage.getItem('spotify_token_expiry');
+  
+    if (tokenInStorage && expiryTimeInStorage && new Date().getTime() < Number(expiryTimeInStorage)) {
+      accessToken = tokenInStorage;
+      tokenExpirationTime = Number(expiryTimeInStorage);
+      return accessToken;
+    }
+  
+    // Extract token and expiry time from URL.
     const tokenInURL = window.location.href.match(/access_token=([^&]*)/);
     const expiryTime = window.location.href.match(/expires_in=([^&]*)/);
-
+  
     if (tokenInURL && expiryTime) {
       accessToken = tokenInURL[1];
       const expiresIn = Number(expiryTime[1]);
       tokenExpirationTime = new Date().getTime() + expiresIn * 1000;
-
+  
+      // Store token and expiry time in local storage.
+      localStorage.setItem('spotify_access_token', accessToken);
+      localStorage.setItem('spotify_token_expiry', tokenExpirationTime.toString());
+  
+      // Set timeout to clear token after expiration.
       window.setTimeout(() => {
         accessToken = "";
+        localStorage.removeItem('spotify_access_token');
+        localStorage.removeItem('spotify_token_expiry');
         console.log("Token expired");
       }, expiresIn * 1000);
-
+  
       window.history.replaceState("Access token", null, "/");
       return accessToken;
     }
-
+  },
+  
+  login() {
     const redirect = `${spotifyAuthURL}?client_id=${clientId}&response_type=token&scope=${scope}&redirect_uri=${redirectURL}`;
     window.location.replace(redirect);
   },
-
+  
   async search(term) {
     accessToken = Spotify.getAccessToken();
     const response = await fetch(`${apiBaseURL}/search?type=track&q=${term}`, {
