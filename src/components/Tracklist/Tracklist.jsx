@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./Tracklist.module.css";
 import Track from "../Track/Track";
 
-const Tracklist = ({ userSearchResults, isRemoval, onAdd, onRemove }) => {
+const Tracklist = memo(({ userSearchResults, isRemoval, onAdd, onRemove }) => {
   return (
     <div className={styles.tracklist}>
       {userSearchResults.map((track) => (
@@ -16,6 +16,6 @@ const Tracklist = ({ userSearchResults, isRemoval, onAdd, onRemove }) => {
       ))}
     </div>
   );
-};
+});
 
 export default Tracklist;

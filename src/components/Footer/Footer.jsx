@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./Footer.module.css";
 
-const Footer = () => {
+const Footer = memo(() => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -21,6 +21,6 @@ const Footer = () => {
       </p>
     </footer>
   );
-};
+});
 
 export default Footer;

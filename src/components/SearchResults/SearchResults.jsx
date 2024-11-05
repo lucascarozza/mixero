@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./SearchResults.module.css";
 import Tracklist from "../Tracklist/Tracklist";
 
-const SearchResults = ({ userSearchResults, searchTerm, onAdd }) => {
+const SearchResults = memo(({ userSearchResults, searchTerm, onAdd }) => {
   return (
     <div className={styles.container}>
       <div className={styles.searchResults}>
@@ -36,6 +36,6 @@ const SearchResults = ({ userSearchResults, searchTerm, onAdd }) => {
       </div>
     </div>
   );
-};
+});
 
 export default SearchResults;

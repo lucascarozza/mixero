@@ -1,9 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { memo, useState, useRef } from "react";
 import styles from "./Track.module.css";
 import pause from "../../assets/pause.svg";
 import play from "../../assets/play.svg";
 
-const Track = ({ track, onAdd, onRemove, isRemoval }) => {
+const Track = memo(({ track, onAdd, onRemove, isRemoval }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(new Audio(track.preview_url));
 
@@ -70,6 +70,6 @@ const Track = ({ track, onAdd, onRemove, isRemoval }) => {
       {renderAction()}
     </div>
   );
-};
+});
 
 export default Track;

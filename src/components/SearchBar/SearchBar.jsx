@@ -1,12 +1,13 @@
-import React, { useCallback, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import styles from "./SearchBar.module.css";
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = memo(({ onSearch }) => {
   const [term, setTerm] = useState("");
 
+  // Memoize the handleTermChange function to avoid unnecessary re-creation
   const handleTermChange = useCallback(
-    ({ target }) => {
-      const sanitizedInput = target.value.replace(
+    (event) => {
+      const sanitizedInput = event.target.value.replace(
         /[<>\/\\&"'`@#$%^*()+=~]/g,
         ""
       ); // Remove malicious symbols
@@ -30,6 +31,6 @@ const SearchBar = ({ onSearch }) => {
       />
     </div>
   );
-};
+});
 
 export default SearchBar;
