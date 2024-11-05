@@ -1,24 +1,45 @@
-import React, { memo, useState, useRef } from "react";
+import React, { memo, useState, useEffect, useRef } from "react";
 import styles from "./Track.module.css";
 import pause from "../../assets/pause.svg";
 import play from "../../assets/play.svg";
 
 const Track = memo(({ track, onAdd, onRemove, isRemoval }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(new Audio(track.preview_url));
+  const audioRef = useRef(null);
 
-  // Play/Pause the preview sample.
-  const togglePlayPause = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
+  useEffect(() => {
+    // Create a new Audio object only if the preview_url is valid
+    if (track.preview_url) {
+      audioRef.current = new Audio(track.preview_url);
+      audioRef.current.crossOrigin = "anonymous";
     } else {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
+      audioRef.current = null;
     }
-    setIsPlaying(!isPlaying);
+
+    // Cleanup audio resources on component unmount
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = "";
+        audioRef.current.load();
+      }
+    };
+  }, [track.preview_url]);
+
+  // Play/Pause the preview sample
+  const togglePlayPause = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.currentTime = 0;
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
   };
 
-  //  Render Play/Pause button associated with togglePlayPause.
+  // Render Play/Pause button associated with togglePlayPause
   const renderPlayPauseButton = () => (
     <img
       src={isPlaying ? pause : play}
@@ -28,7 +49,7 @@ const Track = memo(({ track, onAdd, onRemove, isRemoval }) => {
     />
   );
 
-  // Add/Remove track to the Playlist component.
+  // Add/Remove track to the Playlist component
   const passTrack = () => {
     if (isRemoval) {
       onRemove(track);
@@ -37,7 +58,7 @@ const Track = memo(({ track, onAdd, onRemove, isRemoval }) => {
     }
   };
 
-  // Render Add/Remove button associated with passTrack.
+  // Render Add/Remove button associated with passTrack
   const renderAction = () => (
     <button
       className={`${styles.trackAction} ${
@@ -58,7 +79,7 @@ const Track = memo(({ track, onAdd, onRemove, isRemoval }) => {
             className={styles.cover}
             alt={`${track.name} cover`}
           />
-          {renderPlayPauseButton()}
+          {track.preview_url && renderPlayPauseButton()}
         </div>
         <div className={styles.trackInfo}>
           <h3>{track.name}</h3>

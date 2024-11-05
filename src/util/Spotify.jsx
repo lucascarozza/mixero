@@ -1,20 +1,10 @@
-const clientId = import.meta.env.VITE_CLIENT_ID;
-const redirectURL = import.meta.env.VITE_REDIRECT_URL;
-const spotifyAuthURL = import.meta.env.VITE_SPOTIFY_AUTH_URL;
-const apiBaseURL = import.meta.env.VITE_API_BASE_URL;
-const scope = import.meta.env.VITE_SCOPE;
-const playlistURL = import.meta.env.VITE_PLAYLIST_URL;
-
-let accessToken;
-let tokenExpirationTime;
-
 const Spotify = {
   getAccessToken() {
     console.log("Checking access token...");
   
     // Check if token is still valid.
-    if (accessToken && new Date().getTime() < tokenExpirationTime) {
-      return accessToken;
+    if (this.accessToken && new Date().getTime() < this.tokenExpirationTime) {
+      return this.accessToken;
     }
   
     // Check local storage for token and its expiry time.
@@ -22,9 +12,9 @@ const Spotify = {
     const expiryTimeInStorage = localStorage.getItem('spotify_token_expiry');
   
     if (tokenInStorage && expiryTimeInStorage && new Date().getTime() < Number(expiryTimeInStorage)) {
-      accessToken = tokenInStorage;
-      tokenExpirationTime = Number(expiryTimeInStorage);
-      return accessToken;
+      this.accessToken = tokenInStorage;
+      this.tokenExpirationTime = Number(expiryTimeInStorage);
+      return this.accessToken;
     }
   
     // Extract token and expiry time from URL.
@@ -32,35 +22,37 @@ const Spotify = {
     const expiryTime = window.location.href.match(/expires_in=([^&]*)/);
   
     if (tokenInURL && expiryTime) {
-      accessToken = tokenInURL[1];
+      this.accessToken = tokenInURL[1];
       const expiresIn = Number(expiryTime[1]);
-      tokenExpirationTime = new Date().getTime() + expiresIn * 1000;
+      this.tokenExpirationTime = new Date().getTime() + expiresIn * 1000;
   
       // Store token and expiry time in local storage.
-      localStorage.setItem('spotify_access_token', accessToken);
-      localStorage.setItem('spotify_token_expiry', tokenExpirationTime.toString());
+      localStorage.setItem('spotify_access_token', this.accessToken);
+      localStorage.setItem('spotify_token_expiry', this.tokenExpirationTime.toString());
   
       // Set timeout to clear token after expiration.
       window.setTimeout(() => {
-        accessToken = "";
+        this.accessToken = "";
         localStorage.removeItem('spotify_access_token');
         localStorage.removeItem('spotify_token_expiry');
         console.log("Token expired");
       }, expiresIn * 1000);
   
       window.history.replaceState("Access token", null, "/");
-      return accessToken;
+      return this.accessToken;
     }
+  
+    return "";
   },
   
   login() {
-    const redirect = `${spotifyAuthURL}?client_id=${clientId}&response_type=token&scope=${scope}&redirect_uri=${redirectURL}`;
+    const redirect = `${import.meta.env.VITE_SPOTIFY_AUTH_URL}?client_id=${import.meta.env.VITE_CLIENT_ID}&response_type=token&scope=${import.meta.env.VITE_SCOPE}&redirect_uri=${import.meta.env.VITE_REDIRECT_URL}`;
     window.location.replace(redirect);
   },
   
   async search(term) {
-    accessToken = Spotify.getAccessToken();
-    const response = await fetch(`${apiBaseURL}/search?type=track&q=${term}`, {
+    const accessToken = this.getAccessToken();
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/search?type=track&q=${term}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${accessToken}` },
     });
@@ -82,17 +74,17 @@ const Spotify = {
   async savePlaylist(name, trackURIs) {
     if (!name || !trackURIs) return;
 
-    const aToken = Spotify.getAccessToken();
-    const savePlaylistHeader = { Authorization: `Bearer ${aToken}` };
+    const accessToken = this.getAccessToken();
+    const savePlaylistHeader = { Authorization: `Bearer ${accessToken}` };
 
-    const response = await fetch(`${apiBaseURL}/me`, {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/me`, {
       headers: savePlaylistHeader,
     });
     const jsonResponse = await response.json();
     const userId = jsonResponse.id;
 
     const playlistResponse = await fetch(
-      `${apiBaseURL}/users/${userId}/playlists`,
+      `${import.meta.env.VITE_API_BASE_URL}/users/${userId}/playlists`,
       {
         headers: savePlaylistHeader,
         method: "POST",
@@ -102,7 +94,7 @@ const Spotify = {
     const playlistJsonResponse = await playlistResponse.json();
     const playlistId = playlistJsonResponse.id;
 
-    await fetch(`${apiBaseURL}/playlists/${playlistId}/tracks`, {
+    await fetch(`${import.meta.env.VITE_API_BASE_URL}/playlists/${playlistId}/tracks`, {
       headers: savePlaylistHeader,
       method: "POST",
       body: JSON.stringify({ uris: trackURIs }),
@@ -110,8 +102,8 @@ const Spotify = {
   },
 
   async getTop50Global() {
-    accessToken = Spotify.getAccessToken();
-    const response = await fetch(`${apiBaseURL}/playlists/${playlistURL}`, {
+    const accessToken = this.getAccessToken();
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/playlists/${import.meta.env.VITE_PLAYLIST_URL}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${accessToken}` },
     });
