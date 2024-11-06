@@ -86,7 +86,7 @@ const App = memo(() => {
           ) : (
             <div className={styles.login}>
               <h3 className={styles.loginText}>
-                log in to Spotify to start exploring
+                log in to Spotify to start searching
               </h3>
               <button className={styles.loginButton} onClick={Spotify.login}>
                 Log In To Spotify

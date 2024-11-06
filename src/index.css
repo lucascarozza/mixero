@@ -66,6 +66,12 @@ input[type="search"]::-webkit-search-cancel-button:hover {
   }
 }
 
+@media only screen and (max-width: 768px) {
+  html {
+    margin: 0 3rem;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   html {
     margin: 0 2rem;

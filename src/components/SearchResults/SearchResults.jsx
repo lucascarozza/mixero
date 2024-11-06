@@ -31,7 +31,7 @@ const SearchResults = memo(({ userSearchResults, searchTerm, onAdd }) => {
             </p>
           </div>
         ) : (
-          <p className={styles.placeholder}>tracks will appear here</p>
+          <p className={styles.placeholder}>log in to Spotify to see tracks</p>
         )}
       </div>
     </div>
