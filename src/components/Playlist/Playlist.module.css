@@ -60,6 +60,7 @@
   text-align: center;
   height: 5rem;
   justify-content: center;
+  cursor: default;
 }
 
 .saveToSpotify {

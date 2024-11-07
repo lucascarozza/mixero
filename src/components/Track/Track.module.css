@@ -10,6 +10,7 @@
 
 .track:hover {
   transform: scale(1.02);
+  cursor: default;
 }
 
 .trackAction {

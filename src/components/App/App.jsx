@@ -98,6 +98,7 @@ const App = memo(() => {
               userSearchResults={searchResults}
               searchTerm={searchTerm}
               onAdd={addTrack}
+              playlistTracks={playlistTracks}
             />
             <Playlist
               playlistName={playlistName}

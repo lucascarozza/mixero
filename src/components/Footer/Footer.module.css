@@ -7,6 +7,7 @@ footer {
   color: var(--supporting-color);
   font-family: var(--primary-font-family);
   line-height: var(--default-line-height);
+  cursor: default;
 }
 
 .copyright a {

@@ -50,6 +50,12 @@
   justify-content: center;
 }
 
+.searchResultsTitle,
+.searchResultsFooter,
+.placeholder {
+  cursor: default;
+}
+
 @media only screen and (max-width: 1024px) {
   .container {
     width: 100%;

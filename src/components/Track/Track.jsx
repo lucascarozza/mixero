@@ -73,6 +73,7 @@ const Track = memo(({ track, onAdd, onRemove, isRemoval }) => {
         isRemoval ? styles.removeTrack : styles.addTrack
       }`}
       onClick={handleAction}
+      type="button"
     >
       {isRemoval ? "–" : "+"}
     </button>
@@ -100,7 +101,7 @@ const Track = memo(({ track, onAdd, onRemove, isRemoval }) => {
           </p>
           {isPlayDisabled ? (
             <p className={styles.noPreview}>
-              Preview not available for this track
+              &#9432; Preview not available for this track
             </p>
           ) : (
             ""

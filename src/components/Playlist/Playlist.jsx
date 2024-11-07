@@ -42,6 +42,7 @@ const Playlist = memo(
             <p className={styles.placeholder}>add tracks to get started</p>
           )}
           <button
+            type="button"
             className={styles.saveToSpotify}
             onClick={onSave}
             disabled={isDisabled}
