@@ -86,10 +86,23 @@
   cursor: default;
 }
 
-.warning {
-  color: var(--error-accent-color);
+.warning,
+.pending,
+.success {
   font-size: 1rem;
   margin: 1rem 0;
+}
+
+.warning {
+  color: var(--error-accent-color);
+}
+
+.pending {
+  color: var(--supporting-color);
+}
+
+.success {
+  color: var(--spotify-green);
 }
 
 @media only screen and (max-width: 1024px) {

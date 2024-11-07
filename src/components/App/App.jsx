@@ -14,7 +14,7 @@ const App = memo(() => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Memoize the fetchTop50Global function to avoid unnecessary re-fetching
+  // Fetch Top 50 Global playlist
   const fetchTop50Global = useCallback(async () => {
     try {
       const result = await Spotify.getTop50Global();
@@ -55,12 +55,10 @@ const App = memo(() => {
     setPlaylistName(name);
   }, []);
 
-  const savePlaylist = useCallback(async () => {
-    const trackURIs = playlistTracks.map((t) => t.uri);
-    await Spotify.savePlaylist(playlistName, trackURIs);
+  const resetPlaylist = useCallback(() => {
     setPlaylistName("New Playlist");
     setPlaylistTracks([]);
-  }, [playlistName, playlistTracks]);
+  }, []);
 
   const search = useCallback(
     (term) => {
@@ -105,7 +103,7 @@ const App = memo(() => {
               playlistTracks={playlistTracks}
               onRemove={removeTrack}
               onNameChange={updatePlaylistName}
-              onSave={savePlaylist}
+              onReset={resetPlaylist}
             />
           </div>
         </div>
