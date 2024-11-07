@@ -26,7 +26,6 @@ const App = memo(() => {
 
   useEffect(() => {
     const token = Spotify.getAccessToken();
-    console.log("Token from getAccessToken:", token);
 
     if (token) {
       setIsLoggedIn(true);
