@@ -99,13 +99,6 @@ const Track = memo(({ track, onAdd, onRemove, isRemoval }) => {
           <p>
             {track.artist} | {track.album}
           </p>
-          {isPlayDisabled ? (
-            <p className={styles.noPreview}>
-              &#9432; Preview not available for this track
-            </p>
-          ) : (
-            ""
-          )}
         </div>
       </div>
       <ActionButton />

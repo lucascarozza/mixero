@@ -36,6 +36,7 @@ h2 {
 .loginButton {
   font-family: var(--primary-font-family);
   font-size: 1rem;
+  color: var(--secondary-text-color);
   border: none;
   border-radius: 3rem;
   background-color: var(--spotify-green);
@@ -53,5 +54,11 @@ h2 {
   .container {
     flex-flow: column wrap;
     align-items: center;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .login {
+    margin-bottom: 1rem;
   }
 }

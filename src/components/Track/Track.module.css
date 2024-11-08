@@ -120,19 +120,3 @@
     font-size: 0.8rem;
   }
 }
-
-@media only screen and (max-width: 480px) {
-  .trackContainer h3,
-  .trackContainer p {
-    line-height: 1rem;
-    margin: 0;
-  }
-
-  .trackContainer h3 {
-    font-size: 0.8rem;
-  }
-
-  .trackContainer p {
-    font-size: 0.7rem;
-  }
-}

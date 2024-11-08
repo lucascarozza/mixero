@@ -71,7 +71,7 @@ const Playlist = memo(
             Save To Spotify
           </button>
           {playlistName.trim() === "" && (
-            <p className={styles.warning}>a playlist name is required.</p>
+            <p className={styles.warning}>a playlist name is required</p>
           )}
           {saveStatus === "pending" && (
             <p className={styles.pending}>saving playlist to Spotify...</p>
