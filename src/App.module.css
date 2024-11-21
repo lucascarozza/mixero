@@ -1,0 +1,64 @@
+h2,
+.content {
+  color: var(--primary-text-color);
+  font-family: var(--primary-font-family);
+}
+
+h2 {
+  font-size: 1.55rem;
+}
+
+.content {
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.login {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  width: 100%;
+}
+
+.loginText {
+  color: var(--supporting-color);
+  cursor: default;
+}
+
+.loginButton {
+  font-family: var(--primary-font-family);
+  font-size: 1rem;
+  color: var(--secondary-text-color);
+  border: none;
+  border-radius: 3rem;
+  background-color: var(--spotify-green);
+  height: 3rem;
+  width: 15rem;
+  transition: background-color 0.25s;
+}
+
+.loginButton:hover {
+  background-color: var(--secondary-green);
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    flex-flow: column wrap;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .login {
+    margin-bottom: 1rem;
+  }
+}
