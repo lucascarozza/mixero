@@ -1,0 +1,19 @@
+header {
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+  padding: 8rem 0 4rem 0;
+  color: #fff;
+  font-family: var(--primary-font-family);
+}
+
+.logo {
+  font-size: 3rem;
+  cursor: default;
+}
+
+@media only screen and (max-width: 768px) {
+  header {
+    padding: 6rem 0 3rem 0;
+  }
+}
