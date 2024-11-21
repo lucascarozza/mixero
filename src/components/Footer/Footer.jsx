@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer>
       <p className={styles.copyright}>
-        Powered by
+        Powered by{" "}
         <a
           href="https://open.spotify.com/"
           target="_blank"

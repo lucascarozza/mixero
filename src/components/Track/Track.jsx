@@ -14,6 +14,11 @@ const Track = memo(({ track, onAdd, onRemove, isRemoval }) => {
     if (track.preview_url) {
       audioRef.current = new Audio(track.preview_url);
       audioRef.current.crossOrigin = "anonymous";
+
+      // Add ended event listener to reset playing state
+      audioRef.current.addEventListener("ended", () => {
+        setIsPlaying(false);
+      });
     } else {
       audioRef.current = null;
       setIsPlayDisabled(true);
@@ -23,6 +28,9 @@ const Track = memo(({ track, onAdd, onRemove, isRemoval }) => {
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
+        audioRef.current.removeEventListener("ended", () => {
+          setIsPlaying(false);
+        });
         audioRef.current.src = "";
         audioRef.current.load();
       }
@@ -32,7 +40,13 @@ const Track = memo(({ track, onAdd, onRemove, isRemoval }) => {
   // Play/Pause the preview sample
   const togglePlayPause = () => {
     if (audioRef.current) {
-      isPlaying ? audioRef.current.pause() : audioRef.current.play();
+      if (isPlaying) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      } else {
+        audioRef.current.currentTime = 0; // Reset time before playing
+        audioRef.current.play();
+      }
       setIsPlaying((prevState) => !prevState);
     }
   };
