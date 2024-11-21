@@ -1,0 +1,32 @@
+.searchBar {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  width: 100%;
+}
+
+.searchBar input {
+  background-color: white;
+  border: none;
+  border-radius: 2rem;
+  color: black;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  height: 3rem;
+  padding: 0 1.4rem;
+  width: 25rem;
+  outline: none;
+}
+
+.searchBar input:hover,
+.searchBar input:focus {
+  outline: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .searchBar {
+    margin-bottom: 1rem;
+  }
+}
