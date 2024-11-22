@@ -6,9 +6,6 @@
 
 .playlist {
   background: var(--container-background-color);
-  box-shadow: var(--container-box-shadow);
-  -webkit-backdrop-filter: var(--container-backdrop-filter);
-  backdrop-filter: var(--container-backdrop-filter);
   border-radius: var(--container-border-radius);
   overflow-y: scroll;
   overflow-x: hidden;
