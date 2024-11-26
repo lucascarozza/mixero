@@ -1,3 +1,6 @@
+/* Footer 
+ * ======================================= */
+
 footer {
   display: flex;
   align-items: center;
@@ -7,14 +10,4 @@ footer {
   color: var(--supporting-color);
   font-family: var(--primary-font-family);
   line-height: var(--default-line-height);
-  cursor: default;
-}
-
-.copyright a {
-  color: var(--spotify-green);
-  transition: color 0.25s;
-}
-
-.copyright a:hover {
-  color: var(--secondary-green);
 }

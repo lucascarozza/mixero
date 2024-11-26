@@ -1,4 +1,14 @@
-.searchBar {
+/* Search Bar Stylesheet Index
+ *
+ * 1. Search Bar Container.......(Line 11)
+ * 2. Search Bar Input...........(Line 19)
+ * 3. Responsiveness.............(Line 40)
+ *
+ * ======================================= */
+
+/* 1. Search Bar Container 
+ * ======================================= */
+ .searchBar {
   align-items: center;
   display: inline-flex;
   justify-content: center;
@@ -6,6 +16,8 @@
   width: 100%;
 }
 
+/* 2. Search Bar Input 
+ * ======================================= */
 .searchBar input {
   background-color: white;
   border: none;
@@ -25,6 +37,8 @@
   outline: none;
 }
 
+/* 3. Responsive Styles 
+ * ======================================= */
 @media only screen and (max-width: 768px) {
   .searchBar {
     margin-bottom: 1rem;

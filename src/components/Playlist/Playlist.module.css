@@ -1,9 +1,25 @@
-.container {
+/* Playlist Stylesheet Index
+ *
+ * 1. Container.................(Line 013)
+ * 2. Playlist..................(Line 021)
+ * 3. Input Fields..............(Line 036)
+ * 4. Placeholder...............(Line 069)
+ * 5. Save Button...............(Line 083)
+ * 6. Status Messages...........(Line 108)
+ * 7. Responsiveness............(Line 129)
+ *
+ * ======================================= */
+
+/* 1. Container 
+ * ======================================= */
+ .container {
   border-radius: var(--container-border-radius);
   overflow: hidden;
   width: 50%;
 }
 
+/* 2. Playlist 
+ * ======================================= */
 .playlist {
   background: var(--container-background-color);
   border-radius: var(--container-border-radius);
@@ -17,6 +33,8 @@
   align-items: center;
 }
 
+/* 3. Input Fields 
+ * ======================================= */
 .playlist input,
 .saveToSpotify,
 .warning {
@@ -48,6 +66,8 @@
   box-shadow: inset 0 0 0 0.1rem var(--error-accent-color);
 }
 
+/* 4. Placeholder 
+ * ======================================= */
 .placeholder {
   align-items: center;
   display: flex;
@@ -60,6 +80,8 @@
   cursor: default;
 }
 
+/* 5. Save Button 
+ * ======================================= */
 .saveToSpotify {
   background-color: var(--spotify-green);
   border: none;
@@ -83,6 +105,8 @@
   cursor: default;
 }
 
+/* 6. Status Messages 
+ * ======================================= */
 .warning,
 .pending,
 .success {
@@ -102,6 +126,8 @@
   color: var(--spotify-green);
 }
 
+/* 7. Responsiveness 
+ * ======================================= */
 @media only screen and (max-width: 1024px) {
   .container {
     width: 100%;

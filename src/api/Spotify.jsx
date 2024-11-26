@@ -1,16 +1,18 @@
 const Spotify = {
+  // Retrieve and manages Spotify access token
   getAccessToken() {
     console.log("Checking access token...");
 
-    // Check if token is still valid.
+    // Check if current token is still valid
     if (this.accessToken && new Date().getTime() < this.tokenExpirationTime) {
       return this.accessToken;
     }
 
-    // Check local storage for token and its expiry time.
+    // Check for token in local storage
     const tokenInStorage = localStorage.getItem("spotify_access_token");
     const expiryTimeInStorage = localStorage.getItem("spotify_token_expiry");
 
+    // Validate and use stored token if available
     if (
       tokenInStorage &&
       expiryTimeInStorage &&
@@ -21,23 +23,24 @@ const Spotify = {
       return this.accessToken;
     }
 
-    // Extract token and expiry time from URL.
+    // Extract token from URL after Spotify authentication
     const tokenInURL = window.location.href.match(/access_token=([^&]*)/);
     const expiryTime = window.location.href.match(/expires_in=([^&]*)/);
 
+    // Process and store new token
     if (tokenInURL && expiryTime) {
       this.accessToken = tokenInURL[1];
       const expiresIn = Number(expiryTime[1]);
       this.tokenExpirationTime = new Date().getTime() + expiresIn * 1000;
 
-      // Store token and expiry time in local storage.
+      // Save token to local storage
       localStorage.setItem("spotify_access_token", this.accessToken);
       localStorage.setItem(
         "spotify_token_expiry",
         this.tokenExpirationTime.toString()
       );
 
-      // Set timeout to clear token after expiration.
+      // Set up automatic token expiration
       window.setTimeout(() => {
         this.accessToken = "";
         localStorage.removeItem("spotify_access_token");
@@ -45,6 +48,7 @@ const Spotify = {
         console.log("Token expired");
       }, expiresIn * 1000);
 
+      // Clean up URL
       window.history.replaceState(null, null, "/");
       return this.accessToken;
     }
@@ -52,6 +56,7 @@ const Spotify = {
     return "";
   },
 
+  // Initiates Spotify login process by redirecting to authentication URL
   login() {
     const redirect = `${import.meta.env.VITE_SPOTIFY_AUTH_URL}?client_id=${
       import.meta.env.VITE_CLIENT_ID
@@ -61,6 +66,7 @@ const Spotify = {
     window.location.replace(redirect);
   },
 
+  // Searches Spotify for tracks matching a search term
   async search(term) {
     const accessToken = this.getAccessToken();
     const response = await fetch(
@@ -74,6 +80,7 @@ const Spotify = {
     if (!jsonResponse) {
       console.error("Response error");
     }
+    // Transform response to extract relevant track information
     return jsonResponse.tracks.items.map((t) => ({
       id: t.id,
       name: t.name,
@@ -85,18 +92,21 @@ const Spotify = {
     }));
   },
 
+  // Create a new playlist with given name and tracks
   async savePlaylist(name, trackURIs) {
     if (!name || !trackURIs) return;
 
     const accessToken = this.getAccessToken();
     const savePlaylistHeader = { Authorization: `Bearer ${accessToken}` };
 
+    // Get user ID
     const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/me`, {
       headers: savePlaylistHeader,
     });
     const jsonResponse = await response.json();
     const userId = jsonResponse.id;
 
+    // Create new playlist
     const playlistResponse = await fetch(
       `${import.meta.env.VITE_API_BASE_URL}/users/${userId}/playlists`,
       {
@@ -108,6 +118,7 @@ const Spotify = {
     const playlistJsonResponse = await playlistResponse.json();
     const playlistId = playlistJsonResponse.id;
 
+    // Add tracks to the playlist
     await fetch(
       `${import.meta.env.VITE_API_BASE_URL}/playlists/${playlistId}/tracks`,
       {
@@ -118,6 +129,7 @@ const Spotify = {
     );
   },
 
+  // Fetch Top 50 Global playlist
   async getTop50Global() {
     const accessToken = this.getAccessToken();
     const response = await fetch(
@@ -131,6 +143,7 @@ const Spotify = {
     );
     const textResponse = await response.text();
     try {
+      // Parse and transform playlist track information
       const jsonResponse = JSON.parse(textResponse);
       if (!jsonResponse) {
         console.error("Response error");

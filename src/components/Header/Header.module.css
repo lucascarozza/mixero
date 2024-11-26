@@ -1,4 +1,14 @@
-header {
+/* Header Stylesheet Index
+ *
+ * 1. Header Container...........(Line 09)
+ * 2. Logo.......................(Line 20)
+ * 3. Responsiveness.............(Line 27)
+ *
+ * ======================================= */
+
+/* 1. Header Container 
+ * ======================================= */
+ header {
   display: inline-flex;
   justify-content: center;
   width: 100%;
@@ -7,11 +17,15 @@ header {
   font-family: var(--primary-font-family);
 }
 
+/* 2. Logo 
+ * ======================================= */
 .logo {
   font-size: 3rem;
   cursor: default;
 }
 
+/* 3. Responsiveness 
+ * ======================================= */
 @media only screen and (max-width: 768px) {
   header {
     padding: 6rem 0 3rem 0;

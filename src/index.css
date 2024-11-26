@@ -1,4 +1,16 @@
-:root {
+/* Global Stylesheet Index
+ *
+ * 1. Root Variables.............(Line 11)
+ * 2. Document...................(Line 31)
+ * 3. Scrollbar..................(Line 44)
+ * 4. Search Cancel Button.......(Line 63)
+ * 5. Responsiveness.............(Line 81)
+ *
+ * ======================================= */
+
+/* 1. Root Variables 
+ * ======================================= */
+ :root {
   --primary-font-family: "Poppins", sans-serif;
   --default-line-height: 1.5rem;
   --primary-text-color: white;
@@ -16,6 +28,8 @@
   --divider-border: 0.1rem solid rgba(128, 128, 128, 0.3);
 }
 
+/* 2. Document 
+ * ======================================= */
 html {
   background: var(--background-color);
   overflow-x: hidden;
@@ -27,6 +41,8 @@ body {
   min-height: 100vh;
 }
 
+/* 3. Scrollbar 
+ * ======================================= */
 ::-webkit-scrollbar {
   width: 0.3rem;
 }
@@ -44,6 +60,8 @@ body {
   background: transparent;
 }
 
+/* 4. Search Cancel Button 
+ * ======================================= */
 input[type="search"]::-webkit-search-cancel-button {
   appearance: none;
   background-color: #888;
@@ -60,6 +78,8 @@ input[type="search"]::-webkit-search-cancel-button:hover {
   transform: scale(1.5);
 }
 
+/* 5. Responsiveness 
+ * ======================================= */
 @media only screen and (max-width: 1280px) {
   html {
     margin: 0 5rem;

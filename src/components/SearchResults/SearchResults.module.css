@@ -1,9 +1,23 @@
-.container {
+/* Search Results Stylesheet Index
+ *
+ * 1. Container.................(Line 011)
+ * 2. Search Results............(Line 019)
+ * 3. Titles and Footer.........(Line 031)
+ * 4. Placeholder...............(Line 056)
+ * 5. Responsiveness............(Line 074)
+ *
+ * ======================================= */
+
+/* 1. Container 
+ * ======================================= */
+ .container {
   border-radius: var(--container-border-radius);
   overflow: hidden;
   width: 50%;
 }
 
+/* 2. Search Results 
+ * ======================================= */
 .searchResults {
   background: var(--container-background-color);
   border-radius: var(--container-border-radius);
@@ -14,6 +28,8 @@
   padding: 1rem 1rem 0.6rem 1rem;
 }
 
+/* 3. Titles and Footer 
+ * ======================================= */
 .searchResultsTitle,
 .searchResultsFooter,
 .highlight,
@@ -37,6 +53,8 @@
   color: var(--primary-text-color);
 }
 
+/* 4. Placeholder 
+ * ======================================= */
 .placeholder {
   align-items: center;
   display: flex;
@@ -53,6 +71,8 @@
   cursor: default;
 }
 
+/* 5. Responsiveness 
+ * ======================================= */
 @media only screen and (max-width: 1024px) {
   .container {
     width: 100%;
