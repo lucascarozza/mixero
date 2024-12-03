@@ -1,11 +1,6 @@
 import styles from "./SideMenu.module.css";
-import {
-  FaHouse,
-  FaList,
-  FaRetweet,
-  FaSpotify,
-  FaQuestion,
-} from "react-icons/fa6";
+import { FaHouse, FaRetweet, FaSpotify, FaQuestion } from "react-icons/fa6";
+import { MdLibraryMusic } from "react-icons/md";
 
 const SideMenu = () => {
   return (
@@ -22,7 +17,7 @@ const SideMenu = () => {
             </li>
             <li>
               <a href="#" className={styles.navLink}>
-                <FaList aria-hidden="true" /> Manage Playlists
+                <MdLibraryMusic aria-hidden="true" /> Manage Playlists
               </a>
             </li>
             <li>
