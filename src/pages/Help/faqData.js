@@ -1,0 +1,6 @@
+export const faqData = [
+    { question: "Why can't I preview tracks anymore?", answer: "Due to an update in Spotify's Web API on November 27, 2024, the 30-second track preview feature is no longer accessible in third-party applications. This change impacts mostly every app that used this feature. Sorry about that!"},
+    { question: "Is my personal information safe?", answer: "Definitely! We use Spotify's Authorization Code with PKCE Flow to keep your connection super secure. Plus, we follow all of Spotify's guidelines to ensure everything is up to their high standards. Don't worry, we don't collect, store, or sell any of your personal info. Your privacy is our priority!"},
+    { question: "Do I have to pay to use Mixero?", answer: "Our app is completely free and will remain so. Even though Spotify offers a premium subscription, it doesn't change how the app works. Enjoy all the features at no cost!"},
+    { question: "What should I do if I encounter bugs or errors?", answer: "If you experience any bugs or errors, just let us know! Send us the details, and we'll work on fixing it as soon as possible. Your feedback helps us improve the app, so we appreciate your support!"}
+]

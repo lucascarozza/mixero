@@ -1,0 +1,22 @@
+.contentWrapper {
+    width: 100%;
+    height: auto;
+    padding: 1rem 2rem;
+}
+
+.pageTitle {
+    font-size: 2rem;
+    margin: 3rem 0 2rem 0;
+}
+
+.question {
+    background-color: var(--secondary-color);
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.answer {
+    margin-top: 1rem;
+}
