@@ -11,34 +11,31 @@
 /* 1. Root Variables 
  * ======================================= */
  :root {
-  --primary-font-family: "Poppins", sans-serif;
-  --default-line-height: 1.5rem;
-  --primary-text-color: white;
-  --secondary-text-color: black;
-  --supporting-color: gray;
-  --background-color: #121212;
+  --primary-color: #121212;
+  --secondary-color: #424242;
+
+
   --spotify-green: #1db954;
   --secondary-green: #108b3b;
   --error-accent-color: red;
-  --container-background-color: rgba(31, 31, 31, 0.8);
-  --container-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  --container-backdrop-filter: blur(10px);
-  --container-border-radius: 1.5rem;
-  --track-background-color: rgba(71, 71, 71, 1);
-  --divider-border: 0.1rem solid rgba(128, 128, 128, 0.3);
-}
-
-/* 2. Document 
- * ======================================= */
-html {
-  background: var(--background-color);
-  overflow-x: hidden;
-  margin: 0 12rem;
-  min-height: 100vh;
 }
 
 body {
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  color: white;
+  font-size: 1;
+
+  background-color: black;
+}
+
+a {
+  color: white;
+  text-decoration: none;
 }
 
 /* 3. Scrollbar 
