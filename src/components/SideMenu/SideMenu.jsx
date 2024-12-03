@@ -1,6 +1,7 @@
 import styles from "./SideMenu.module.css";
 import { FaHouse, FaRetweet, FaSpotify, FaQuestion } from "react-icons/fa6";
 import { MdLibraryMusic } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const SideMenu = () => {
   return (
@@ -11,19 +12,19 @@ const SideMenu = () => {
         <nav aria-label="Primary navigation">
           <ul className={styles.navList}>
             <li>
-              <a href="#" className={styles.navLink}>
+              <Link to="/" className={styles.navLink}>
                 <FaHouse aria-hidden="true" /> Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.navLink}>
+              <Link to="/manage-playlists" className={styles.navLink}>
                 <MdLibraryMusic aria-hidden="true" /> Manage Playlists
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.navLink}>
+              <Link to="/convert-playlists" className={styles.navLink}>
                 <FaRetweet aria-hidden="true" /> Convert Playlists
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
@@ -33,14 +34,14 @@ const SideMenu = () => {
         <nav aria-label="Secondary navigation">
           <ul className={styles.navList}>
             <li>
-              <a href="#" className={`${styles.navLink} ${styles.accountLink}`}>
+              <Link to="/account" className={`${styles.navLink} ${styles.accountLink}`}>
                 <FaSpotify aria-hidden="true" /> My Account
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.navLink}>
+              <Link to="/help" className={styles.navLink}>
                 <FaQuestion aria-hidden="true" /> Help
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
