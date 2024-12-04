@@ -7,7 +7,6 @@ import Home from "./pages/Home/Home";
 import Help from "./pages/Help/Help";
 import ManagePlaylists from "./pages/ManagePlaylists/ManagePlaylists";
 import ConvertPlaylists from "./pages/ConvertPlaylists/ConvertPlaylists";
-import Account from "./pages/Account/Account";
 
 const App = () => {
   return (
@@ -19,7 +18,6 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/manage-playlists" element={<ManagePlaylists />} />
             <Route path="/convert-playlists" element={<ConvertPlaylists />} />
-            <Route path="/account" element={<Account />} />
             <Route path="/help" element={<Help />} />
           </Routes>
         </div>

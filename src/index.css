@@ -1,23 +1,23 @@
-/* Global Stylesheet Index
- *
- * 1. Root Variables.............(Line 11)
- * 2. Document...................(Line 31)
- * 3. Scrollbar..................(Line 44)
- * 4. Search Cancel Button.......(Line 63)
- * 5. Responsiveness.............(Line 81)
- *
- * ======================================= */
-
 /* 1. Root Variables 
  * ======================================= */
- :root {
+:root {
   --primary-color: #121212;
   --secondary-color: #424242;
-
+  --supporting-color: #080808;
 
   --spotify-green: #1db954;
   --secondary-green: #108b3b;
-  --error-accent-color: red;
+  --warning-red: red;
+
+  --background-gradient: linear-gradient(
+    to bottom,
+    #1db954dc,
+    #1db95481,
+    #1db9544d,
+    #1db95423,
+    #1db95400,
+    #12121200
+  );
 }
 
 body {
@@ -73,24 +73,4 @@ input[type="search"]::-webkit-search-cancel-button {
 input[type="search"]::-webkit-search-cancel-button:hover {
   background-color: var(--error-accent-color);
   transform: scale(1.5);
-}
-
-/* 5. Responsiveness 
- * ======================================= */
-@media only screen and (max-width: 1280px) {
-  html {
-    margin: 0 5rem;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  html {
-    margin: 0 3rem;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  html {
-    margin: 0 1rem;
-  }
 }

@@ -37,7 +37,18 @@
     font-size: 1.5rem;
 }
 
-.navLink {
+button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    height: 3.6rem;
+}
+
+.navLink,
+.activeNavLink {
     display: inline-flex;
     align-items: center;
     gap: 1rem;
@@ -49,14 +60,18 @@
 }
 
 .navLink:hover,
-.navLink:active {
+.activeNavLink {
     background-color: var(--secondary-color);
 }
 
-.accountLink:hover,
-.accountLink:active {
+.logIn:hover {
     background-color: var(--spotify-green);
 }
+
+.logOut:hover {
+    background-color: var(--warning-red);
+}
+
 /* Divider */
 .divider {
     border: 1px solid var(--secondary-color);

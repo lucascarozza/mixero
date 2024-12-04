@@ -1,15 +1,11 @@
 .contentWrapper {
-    width: 100%;
-    height: auto;
-    padding: 1rem 2rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem 2rem;
+  background: var(--background-gradient);
 }
 
 .pageTitle {
-    font-size: 2rem;
-    margin: 3rem 0 2rem 0;
-}
-
-.highlight {
-    color: var(--secondary-color);
-    font-weight: 700;
+  font-size: 2rem;
+  margin: 3rem 0 2rem 0;
 }
