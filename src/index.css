@@ -9,7 +9,7 @@
   --secondary-green: #108b3b;
   --warning-red: red;
 
-  --background-gradient: linear-gradient(
+  --background-gradient-green: linear-gradient(
     to bottom,
     #1db954dc,
     #1db95481,
@@ -18,6 +18,34 @@
     #1db95400,
     #12121200
   );
+  --background-gradient-blue: linear-gradient(
+    to bottom,
+    #1e90ffdc,
+    #1e90ff81,
+    #1e90ff4d,
+    #1e90ff23,
+    #1e90ff00,
+    #121212
+  );
+  --background-gradient-orange: linear-gradient(
+    to bottom,
+    #ffa500dc,
+    #ffa50081,
+    #ffa5004d,
+    #ffa50023,
+    #ffa50000,
+    #121212
+  );
+  --background-gradient-gray: linear-gradient(
+    to bottom,
+    #505050dc,
+    #50505081,
+    #5050504d,
+    #50505023,
+    #50505000,
+    #121212
+);
+
 }
 
 body {

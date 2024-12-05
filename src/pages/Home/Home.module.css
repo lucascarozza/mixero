@@ -1,11 +1,11 @@
-.contentWrapper {
+.container {
   width: 100%;
   height: 100%;
-  padding: 1rem 2rem;
-  background: var(--background-gradient);
+  background: var(--background-gradient-green);
 }
 
-.pageTitle {
-  font-size: 2rem;
-  margin: 3rem 0 2rem 0;
+.card {
+  border: 1px solid yellow;
+  width: 50%;
+  height: 30rem;
 }

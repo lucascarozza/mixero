@@ -1,10 +1,5 @@
 .contentWrapper {
     width: 100%;
-    height: auto;
-    padding: 1rem 2rem;
-}
-
-.pageTitle {
-    font-size: 2rem;
-    margin: 3rem 0 2rem 0;
+    height: 100%;
+    background: var(--background-gradient-orange);
 }

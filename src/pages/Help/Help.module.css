@@ -1,20 +1,15 @@
 .contentWrapper {
     width: 100%;
-    height: auto;
-    padding: 1rem 2rem;
+    height: 100%;
+    background: var(--background-gradient-gray);
 }
 
-.pageTitle {
-    font-size: 2rem;
-    margin: 3rem 0 2rem 0;
-}
-
-.question {
+.questions {
     background-color: var(--secondary-color);
-    margin: 0.5rem 0;
     padding: 1rem;
     border-radius: 1rem;
     cursor: pointer;
+    margin-bottom: 0.5rem;
 }
 
 .answer {

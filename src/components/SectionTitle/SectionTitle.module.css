@@ -1,0 +1,8 @@
+.title {
+    font-size: 2rem;
+    background-color: #ffffff10;
+    backdrop-filter: blur(100%);
+    -webkit-backdrop-filter: blur(100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 4rem 0 1.6rem 2rem;
+}
