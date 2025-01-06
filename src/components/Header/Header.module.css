@@ -5,6 +5,7 @@
     height: 10rem;
     width: 100%;
     margin-bottom: 2rem;
+    padding: 0 1.5rem; /* Experimental design change */
 }
 
 .logo {

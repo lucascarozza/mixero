@@ -1,0 +1,33 @@
+.track {
+    background-color: #2C2C2C;
+    border-radius: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 6rem;
+    width: 100%;
+    transition: transform 300ms ease;
+}
+
+.trackArt {
+    border-radius: 0.5rem;
+    height: 4rem;
+    width: 4rem;
+    aspect-ratio: 1 / 1;
+}
+
+.trackInfo {
+    line-height: 1.5;
+    width: calc(100% - 10rem);
+}
+
+.trackAction {
+    font-size: 2rem;
+    text-align: center;
+    width: 2rem;
+}
+
+.track:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
