@@ -1,7 +1,15 @@
 import styles from "./App.module.css";
+// Component imports
+import ContentArea from "./components/ContentArea/ContentArea";
+import Header from "./components/Header/Header";
 
 const App = () => {
-    return <h1>Amethyst</h1>
+    return (
+        <div className={styles.app}>
+            <Header />
+            <ContentArea />
+        </div>
+    )
 }
 
 export default App;
