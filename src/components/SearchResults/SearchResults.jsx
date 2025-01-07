@@ -9,7 +9,9 @@ const SearchResults = () => {
         here's what we found for{" "}
         <span className={styles.highlight}>it's ok i'm ok</span>
       </p>
-      <Tracklist />
+      <div className={styles.overflow}>
+        <Tracklist />
+      </div>
     </div>
   );
 };
