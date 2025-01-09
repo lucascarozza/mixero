@@ -10,13 +10,18 @@ const Playlist = () => {
     <div className={styles.playlist}>
       <form className={styles.playlistName}>
         <FaEdit className={styles.editIcon} />
-        <input className={styles.nameInput} type="text" placeholder="New Playlist"></input>
+        <input
+          className={styles.nameInput}
+          type="text"
+          placeholder="New Playlist"
+        ></input>
       </form>
       <Tracklist />
-        <div className={styles.actions}>
-          <button className={styles.saveToSpotify} type="button">Save To Spotify</button>
-          <button className={styles.reset} type="button"><FaTrash /></button>
-        </div>
+      <div className={styles.actions}>
+        <button className={styles.saveToSpotify} type="button">
+          Save To Spotify
+        </button>
+      </div>
     </div>
   );
 };

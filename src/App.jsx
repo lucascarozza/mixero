@@ -10,7 +10,7 @@ const App = () => {
       <ContentArea />
       <footer>
         <p>
-          Powered by Spotify <br />
+          Powered by Spotify. <br />
           &copy; 2025 Lucas Carozza. All rights reserved.
         </p>
       </footer>

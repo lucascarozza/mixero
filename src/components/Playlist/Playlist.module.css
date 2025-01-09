@@ -1,24 +1,24 @@
 .playlist {
     height: 100%;
     width: 50%;
-    padding: 1.5rem;
+    padding: 1.3rem 1.5rem 1.5rem 1.5rem;
     overflow-y: auto;
 }
 
 .playlistName {
-    background-color: #0A0A0A;
+    background-color: #2C2C2C;
     border-radius: 1.5rem;
     display: inline-flex;
     align-items: center;
     height: 3rem;
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
 }
 
 .editIcon {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     color: grey;   
-    margin-left: 1rem; 
+    margin-left: 1.2rem; 
 }
 
 .nameInput {
@@ -29,7 +29,7 @@
     outline: none;
     height: 100%;
     width: 100%;
-    padding: 0 1rem 0 0.5rem;
+    padding: 0 1rem 0 0.7rem;
 }
 
 .actions {
@@ -47,14 +47,10 @@
     height: 3rem;
     width: 10rem;
     margin-top: 1.5rem;
+    transition: all 300ms ease;
 }
 
-.reset {
-    background-color:rgb(182, 0, 0) ;
-    border: none;
-    font-size: 1rem;
-    border-radius: 1.5rem;
-    height: 3rem;
-    width: 3rem;
-    margin-top: 1.5rem;
+.saveToSpotify:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }

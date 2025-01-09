@@ -1,17 +1,24 @@
 .searchResults {
-    height: 100%;
-    width: 50%;
-    padding: 1.5rem;
-    overflow-y: auto;
+  height: 100%;
+  width: 50%;
+  padding: 1.5rem;
+  overflow-y: auto;
 }
 
 .searchTitle {
-    color: gray;
-    text-align: center;
-    line-height: 1.5;
-    margin: 0.5rem 0 2rem 0;
+  color: gray;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0.5rem 0 2rem 0;
 }
 
 .highlight {
-    color: white;
+  color: white;
+}
+
+.searchFooter {
+  color: gray;
+  text-align: center;
+  margin: 2rem 0 0.5rem 0;
+  line-height: 1.5;
 }

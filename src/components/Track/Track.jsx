@@ -9,10 +9,10 @@ const song = {
 const Track = () => {
   return (
     <div className={styles.track}>
-      <img className={styles.trackArt} src="itsokimok.jpeg"></img>
+      <img className={styles.trackImage} src="itsokimok.jpeg"></img>
       <div className={styles.trackInfo}>
         <p>{song.name}</p>
-        <p>{song.artist} | {song.album}</p>
+        <p className={styles.trackArtist}>{song.artist} | {song.album}</p>
       </div>
       <div className={styles.trackAction}>+</div>
     </div>

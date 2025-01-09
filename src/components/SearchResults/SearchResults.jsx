@@ -9,9 +9,11 @@ const SearchResults = () => {
         here's what we found for{" "}
         <span className={styles.highlight}>it's ok i'm ok</span>
       </p>
-      <div className={styles.overflow}>
-        <Tracklist />
-      </div>
+      <Tracklist />
+      <p className={styles.searchFooter}>
+        still can't find the song you're looking for?
+        <br /> try searching something different
+      </p>
     </div>
   );
 };
