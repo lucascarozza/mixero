@@ -19,7 +19,6 @@ const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
 const authEndpoint = import.meta.env.VITE_SPOTIFY_AUTH_ENDPOINT;
 const tokenEndpoint = import.meta.env.VITE_SPOTIFY_TOKEN_ENDPOINT;
-const apiEndpoint = import.meta.env.VITE_SPOTIFY_API_ENDPOINT;
 
 /*
  * Note: The original Authorization Code with PKCE Flow is from Spotify and is
@@ -41,7 +40,7 @@ const apiEndpoint = import.meta.env.VITE_SPOTIFY_API_ENDPOINT;
  * - save: Saves the access token, refresh token, and expiration details to localStorage.
  *
  */
-const currentToken = {
+export const currentToken = {
   get access_token() {
     return localStorage.getItem("access_token") || null;
   },
@@ -74,6 +73,7 @@ const currentToken = {
  * 1. Creates a URLSearchParams object from the current window's URL query string.
  * 2. Retrieves the value of the "code" parameter, which contains the authorization
  * code from Spotify.
+ * 
  */
 const args = new URLSearchParams(window.location.search);
 const code = args.get("code");
@@ -89,6 +89,7 @@ const code = args.get("code");
  * 3. Removes the authorization code from the URL to clean up the address bar.
  * 4. Updates the browser history to reflect the cleaned URL without reloading the
  *    page.
+ * 
  */
 if (code) {
   const token = await getToken(code);
