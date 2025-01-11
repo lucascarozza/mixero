@@ -67,42 +67,6 @@ export const currentToken = {
 };
 
 /*
- * Parses the URL query parameters to retrieve the authorization code on page load.
- *
- * Steps:
- * 1. Creates a URLSearchParams object from the current window's URL query string.
- * 2. Retrieves the value of the "code" parameter, which contains the authorization
- * code from Spotify.
- * 
- */
-const args = new URLSearchParams(window.location.search);
-const code = args.get("code");
-
-/*
- * If code is found, exchange it for an access token.
- *
- * Steps:
- * 1. Calls the getToken function to exchange the authorization code for an access
- *    token.
- * 2. Saves the access token, refresh token, and expiration details to localStorage
- *    using currentToken.save.
- * 3. Removes the authorization code from the URL to clean up the address bar.
- * 4. Updates the browser history to reflect the cleaned URL without reloading the
- *    page.
- * 
- */
-if (code) {
-  const token = await getToken(code);
-  currentToken.save(token);
-
-  const url = new URL(window.location.href);
-  url.searchParams.delete("code");
-
-  const updateUrl = url.search ? url.href : url.href.replace("?", "");
-  window.history.replaceState({}, document.title, updateUrl);
-}
-
-/*
  * Authenticates the user with Spotify using PKCE (Proof Key for Code Exchange).
  *
  * Steps:
@@ -117,7 +81,7 @@ if (code) {
  * authorization code for an access token.
  *
  */
-async function authenticateUser() {
+const authenticateUser = async () => {
   const possible =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   const randomValues = crypto.getRandomValues(new Uint8Array(64));
@@ -151,7 +115,7 @@ async function authenticateUser() {
 
   authUrl.search = new URLSearchParams(params).toString();
   window.location.href = authUrl.toString();
-}
+};
 
 /*
  * Exchanges the authorization code for an access token.
@@ -168,7 +132,7 @@ async function authenticateUser() {
  * @returns {Promise<string>} - The access token.
  *
  */
-async function getToken(code) {
+const getToken = async (code) => {
   const code_verifier = localStorage.getItem("code_verifier");
 
   const response = await fetch(tokenEndpoint, {
@@ -186,16 +150,81 @@ async function getToken(code) {
   });
 
   return await response.json();
+};
+
+/*
+ * Refreshes the authentication token.
+ *
+ * Steps:
+ * 1. Makes a POST request to the token endpoint with the required headers and body.
+ * 2. The body includes the client ID, grant type (refresh_token), and the current refresh token.
+ * 3. Parses and returns the JSON response from the server.
+ */
+const refreshToken = async () => {
+  try {
+    const response = await fetch(tokenEndpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        client_id: clientId,
+        grant_type: "refresh_token",
+        refresh_token: currentToken.refresh_token,
+      }),
+    });
+
+    return await response.json();
+  } catch (error) {
+    localStorage.clear();
+    return null;
+  }
+};
+
+/*
+ * Parses the URL query parameters to retrieve the authorization code on page load.
+ *
+ * Steps:
+ * 1. Creates a URLSearchParams object from the current window's URL query string.
+ * 2. Retrieves the value of the "code" parameter, which contains the authorization
+ * code from Spotify.
+ *
+ */
+const args = new URLSearchParams(window.location.search);
+const code = args.get("code");
+
+/*
+ * If code is found, exchange it for an access token.
+ *
+ * Steps:
+ * 1. Calls the getToken function to exchange the authorization code for an access
+ *    token.
+ * 2. Saves the access token, refresh token, and expiration details to localStorage
+ *    using currentToken.save.
+ * 3. Removes the authorization code from the URL to clean up the address bar.
+ * 4. Updates the browser history to reflect the cleaned URL without reloading the
+ *    page.
+ *
+ */
+if (code) {
+  const token = await getToken(code);
+  currentToken.save(token);
+
+  const url = new URL(window.location.href);
+  url.searchParams.delete("code");
+
+  const updateUrl = url.search ? url.href : url.href.replace("?", "");
+  window.history.replaceState({}, document.title, updateUrl);
 }
 
 /*
- * Initiates the user login process by calling the authenticateUser function.
+ * Initiates the login process by calling the authenticateUser function.
  * This function handles the authentication flow with Spotify.
  *
  */
-export async function logIn() {
+export const logIn = async () => {
   await authenticateUser();
-}
+};
 
 /*
  * Logs the user out by clearing all data stored in localStorage.
@@ -203,6 +232,6 @@ export async function logIn() {
  * stored data.
  *
  */
-export async function logOut() {
+export const logOut = () => {
   localStorage.clear();
-}
+};
