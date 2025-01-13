@@ -81,7 +81,7 @@ export const currentToken = {
  * authorization code for an access token.
  *
  */
-const authenticateUser = async () => {
+export const authenticateUser = async () => {
   const possible =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   const randomValues = crypto.getRandomValues(new Uint8Array(64));
@@ -132,7 +132,7 @@ const authenticateUser = async () => {
  * @returns {Promise<string>} - The access token.
  *
  */
-const getToken = async (code) => {
+export const getToken = async (code) => {
   const code_verifier = localStorage.getItem("code_verifier");
 
   const response = await fetch(tokenEndpoint, {
@@ -191,7 +191,7 @@ const refreshToken = async () => {
  *
  */
 const args = new URLSearchParams(window.location.search);
-const code = args.get("code");
+export const code = args.get("code");
 
 /*
  * If code is found, exchange it for an access token.
@@ -216,22 +216,3 @@ if (code) {
   const updateUrl = url.search ? url.href : url.href.replace("?", "");
   window.history.replaceState({}, document.title, updateUrl);
 }
-
-/*
- * Initiates the login process by calling the authenticateUser function.
- * This function handles the authentication flow with Spotify.
- *
- */
-export const logIn = async () => {
-  await authenticateUser();
-};
-
-/*
- * Logs the user out by clearing all data stored in localStorage.
- * This effectively removes the access token, refresh token, and any other
- * stored data.
- *
- */
-export const logOut = () => {
-  localStorage.clear();
-};
