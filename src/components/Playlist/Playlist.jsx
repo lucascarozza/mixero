@@ -1,9 +1,8 @@
 // Styles import
 import styles from "./Playlist.module.css";
 import { FaEdit } from "react-icons/fa";
-import { FaTrash } from "react-icons/fa6";
 // Components import
-import Tracklist from "../Tracklist/Tracklist";
+// import Tracklist from "../Tracklist/Tracklist";
 
 const Playlist = () => {
   return (
@@ -16,7 +15,7 @@ const Playlist = () => {
           placeholder="New Playlist"
         ></input>
       </form>
-      <Tracklist />
+      {/* <Tracklist /> */}
       <div className={styles.actions}>
         <button className={styles.saveToSpotify} type="button">
           Save To Spotify

@@ -1,18 +1,12 @@
 import styles from "./Track.module.css";
 
-const song = {
-  name: "It's ok I'm ok",
-  artist: "Tate McRae",
-  album: "It's ok I'm ok - Single"
-}
-
-const Track = () => {
+const Track = ({ track }) => {
   return (
     <div className={styles.track}>
-      <img className={styles.trackImage} src="itsokimok.jpeg"></img>
+      <img className={styles.trackImage} src={track.image}></img>
       <div className={styles.trackInfo}>
-        <p>{song.name}</p>
-        <p className={styles.trackArtist}>{song.artist} | {song.album}</p>
+        <p>{track.name}</p>
+        <p className={styles.trackArtist}>{track.artists} | {track.album}</p>
       </div>
       <div className={styles.trackAction}>+</div>
     </div>

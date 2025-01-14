@@ -3,6 +3,7 @@
     width: 50%;
     padding: 1.3rem 1.5rem 1.5rem 1.5rem;
     overflow-y: auto;
+    scrollbar-gutter: stable;
 }
 
 .playlistName {

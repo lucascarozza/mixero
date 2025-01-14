@@ -1,9 +1,9 @@
 import { currentToken } from "./authApi";
 
 /*
- * Refer to authApi.js for detailed instructions on setting up the 
+ * Refer to authApi.js for detailed instructions on setting up the
  * environment variables and .env file required for this project.
- * 
+ *
  */
 const apiEndpoint = import.meta.env.VITE_SPOTIFY_API_ENDPOINT;
 
@@ -30,7 +30,7 @@ const search = async (term) => {
     throw new Error("Access token not found.");
   }
 
-  return await fetch(`${apiEndpoint}/search?type=track&q=${term}`, {
+  return await fetch(`${apiEndpoint}search?q=${term}&type=track`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${accessToken}`,
@@ -42,14 +42,20 @@ const search = async (term) => {
         throw new Error("Response error. No data found.");
       }
       return data.tracks.items.map((track) => ({
-        id: track.id,
-        name: track.name,
-        artists: track.artists.map((artist) => artist.name).join(", "),
-        album: track.album.name,
-        image: track.album.images[1].url,
-        uri: track.uri,
+        id: track.id || "ID not found",
+        name: track.name || "Name not found",
+        artists:
+          track.artists.map((artist) => artist.name).join(", ") ||
+          "Artist not found",
+        album: track.album.name || "Album not found",
+        image: track.album.images[1].url || "Image not found",
+        uri: track.uri || "URI not found",
       }));
     });
-}
+};
 
 export default search;
+
+export const logSearch = () => {
+  console.log(search("tate"));
+};

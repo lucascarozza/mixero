@@ -2,17 +2,12 @@ import styles from "./Tracklist.module.css";
 // Component imports
 import Track from "../Track/Track";
 
-const Tracklist = () => {
+const Tracklist = ({ tracks }) => {
   return (
     <div className={styles.tracklist}>
-      <Track />
-      <Track />
-      <Track />
-      <Track />
-      <Track />
-      <Track />
-      <Track />
-      <Track />
+      {tracks.map((track) => (
+        <Track key={track.id} track={track} />
+      ))}
     </div>
   );
 };
