@@ -153,33 +153,39 @@ export const getToken = async (code) => {
 };
 
 /*
- * Refreshes the authentication token.
+ * Refreshes the access token.
  *
  * Steps:
  * 1. Makes a POST request to the token endpoint with the required headers and body.
  * 2. The body includes the client ID, grant type (refresh_token), and the current refresh token.
  * 3. Parses and returns the JSON response from the server.
+ * 4. Sets up a timer to refresh the access token 5 mins before expiry.
  */
-const refreshToken = async () => {
-  try {
-    const response = await fetch(tokenEndpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({
-        client_id: clientId,
-        grant_type: "refresh_token",
-        refresh_token: currentToken.refresh_token,
-      }),
-    });
-
-    return await response.json();
-  } catch (error) {
-    localStorage.clear();
-    return null;
+export const getRefreshToken = async () => {
+  const refreshToken = localStorage.getItem('refresh_token');
+  const url = tokenEndpoint;
+  const payload = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({
+      grant_type: 'refresh_token',
+      refresh_token: refreshToken,
+      client_id: clientId
+    }),
   }
-};
+  const body = await fetch(url, payload);
+  const response = await body.json();
+  
+  localStorage.setItem('access_token', response.accessToken);
+  if (response.refreshToken) {
+    localStorage.setItem('refresh_token', response.refreshToken);
+  }
+
+  const refreshTime = (response.expires_in - 300) * 1000;
+  setTimeout(getRefreshToken, refreshTime);
+}
 
 /*
  * Parses the URL query parameters to retrieve the authorization code on page load.

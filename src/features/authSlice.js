@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { authenticateUser, getToken } from "../api/authApi";
+import { authenticateUser, getRefreshToken, getToken } from "../api/authApi";
 
 // This async thunk initiates the login process
 export const initiateLogIn = createAsyncThunk(
   "auth/initiateLogIn",
   async () => {
     await authenticateUser();
+    await getRefreshToken();
   }
 );
 
