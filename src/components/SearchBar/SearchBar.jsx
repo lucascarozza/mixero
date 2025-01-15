@@ -2,7 +2,7 @@
 import styles from "./SearchBar.module.css";
 import { FaSearch } from "react-icons/fa";
 // Functional imports
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchTracks } from "../../features/searchSlice";
 
@@ -30,12 +30,18 @@ const SearchBar = () => {
     dispatch(fetchTracks(term));
   };
 
+  // Triggers search when term changes and enables live search.
+  useEffect(() => {
+    if (term) {
+      handleSearch();
+    }
+  }, [term]);
+
   return (
     <form
       className={styles.searchBar}
       onSubmit={(e) => {
         e.preventDefault();
-        handleSearch();
       }}
     >
       <button className={styles.searchButton} type="button">
