@@ -4,6 +4,7 @@
   padding: 1.5rem;
   overflow-y: auto;
   scrollbar-gutter: stable;
+  cursor: default;
 }
 
 .searchTitle {

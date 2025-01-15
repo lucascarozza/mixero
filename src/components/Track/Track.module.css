@@ -20,6 +20,9 @@
 .trackInfo {
   line-height: 1.5;
   width: calc(100% - 10rem);
+  white-space: nowrap;
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0));
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0));
 }
 
 .trackArtist {

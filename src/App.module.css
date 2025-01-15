@@ -1,4 +1,4 @@
-.app {    
+.app {
     min-height: 100vh;
 }
 
@@ -7,4 +7,9 @@ footer {
     line-height: 1.5;
     text-align: center;
     padding: 2rem 0;
+    cursor: default;
+}
+
+.highlight {
+    color: rgb(0, 191, 0);
 }
