@@ -23,17 +23,19 @@ const Playlist = () => {
   const dispatch = useDispatch();
   const { name, tracks, status } = useSelector((state) => state.playlist);
 
-  /*
+  /* 
    * Handles playlist name changes.
    *
-   * Steps:
-   * 1. Dispatches updateName action with the new name value from the input field.
-   *
+   * Steps: 
+   * 1. Sanitizes the new name value from the input field.
+   * 2. Dispatches updateName action with the sanitized value.
+   * 
    * @param {Event} e - The event object from the input field.
-   *
+   * 
    */
   const handleNameChange = (e) => {
-    dispatch(updateName(e.target.value));
+    const sanitizedName = e.target.value.replace(/[^\w\s.,-]/gi, "");
+    dispatch(updateName(sanitizedName));
   };
 
   /*

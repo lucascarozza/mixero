@@ -12,7 +12,7 @@ import { fetchTracks } from "../../features/searchSlice";
  * Functionalities:
  * 1. Allows the user to input a search term.
  * 2. Dispatches the fetchTracks action to search for tracks based on the input term.
- * 
+ *
  */
 const SearchBar = () => {
   const [term, setTerm] = useState("");
@@ -23,11 +23,13 @@ const SearchBar = () => {
    * Handles initiating the search process.
    *
    * Steps:
-   * 1. Dispatches the fetchTracks action with the current search term.
-   * 
+   * 1. Sanitizes the search term from the input field.
+   * 2. Dispatches the fetchTracks action with the current search term.
+   *
    */
   const handleSearch = () => {
-    dispatch(fetchTracks(term));
+    const sanitizedTerm = term.replace(/[^\w\s.,-]/gi, "").trim();
+    dispatch(fetchTracks(sanitizedTerm));
   };
 
   // Triggers search when term changes and enables live search.
