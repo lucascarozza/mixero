@@ -9,7 +9,7 @@
  *    - VITE_SPOTIFY_API_ENDPOINT=https://api.spotify.com/v1/
  *    - VITE_SPOTIFY_AUTH_ENDPOINT=https://accounts.spotify.com/authorize
  *    - VITE_SPOTIFY_TOKEN_ENDPOINT=https://accounts.spotify.com/api/token
- *    - VITE_SPOTIFY_AUTH_SCOPE=user-read-private user-read-email
+ *    - VITE_SPOTIFY_AUTH_SCOPE=user-read-private user-read-email playlist-modify-private playlist-modify-public
  *
  * Obtain a Client ID at https://developer.spotify.com/ by creating a new app.
  *
