@@ -4,7 +4,7 @@ import { FaUser } from "react-icons/fa6";
 // Components imports
 import SearchBar from "../SearchBar/SearchBar";
 // Functional imports
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { handleAuthCallback, initiateLogIn } from "../../features/authSlice";
 // API imports
@@ -66,4 +66,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

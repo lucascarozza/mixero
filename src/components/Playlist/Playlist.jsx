@@ -4,6 +4,7 @@ import { FaEdit } from "react-icons/fa";
 // Components import
 import Tracklist from "../Tracklist/Tracklist";
 // Functional imports
+import { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateName,
@@ -80,4 +81,4 @@ const Playlist = () => {
   );
 };
 
-export default Playlist;
+export default memo(Playlist);

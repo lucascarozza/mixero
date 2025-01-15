@@ -2,7 +2,8 @@
 import styles from "./SearchBar.module.css";
 import { FaSearch } from "react-icons/fa";
 // Functional imports
-import { useState, useEffect } from "react";
+import { memo } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchTracks } from "../../features/searchSlice";
 
@@ -62,4 +63,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default memo(SearchBar);
