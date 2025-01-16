@@ -7,12 +7,15 @@ import SearchResults from "../SearchResults/SearchResults";
 // Renders the main content area
 const ContentArea = () => {
   return (
-      <section className={styles.contentArea}>
-            <SearchResults />
-            <hr className={styles.mobileOnlyDivider} />
-            <Playlist />
-      </section>
-  )
-}
+    <section className={styles.contentArea}>
+      <div className={styles.mobileOnlyContainer}>
+        <SearchResults />
+      </div>
+      <div className={styles.mobileOnlyContainer}>
+        <Playlist />
+      </div>
+    </section>
+  );
+};
 
 export default ContentArea;

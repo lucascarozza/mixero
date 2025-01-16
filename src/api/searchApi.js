@@ -55,7 +55,3 @@ const search = async (term) => {
 };
 
 export default search;
-
-export const logSearch = () => {
-  console.log(search("tate"));
-};

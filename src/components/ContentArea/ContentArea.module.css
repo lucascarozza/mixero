@@ -22,14 +22,15 @@
     overflow: hidden;
 }
 
-.mobileOnlyDivider {
-    /* Visibility */
-    display: none;
+.mobileOnlyContainer {
+    /* Layout */
+    width: 50%;
 }
 
 /* 2. Responsive styles
  * ..........................................
  */
+
 @media (max-width: 992px) {
     .contentArea {
         /* Flexbox */
@@ -37,16 +38,28 @@
         flex-direction: column;
         /* Layout */
         height: auto;
+        /* Spacing */
+        gap: 1rem;
+        /* Background */
+        background-color: transparent;
     }
-    
-    .mobileOnlyDivider {
-        /* Visibility */
-        display: block;
+
+    .mobileOnlyContainer {
         /* Layout */
         width: 100%;
-        position: relative;
-        bottom: 0.5rem;
-        /* Colors */
-        border: 1px solid gray;
-      }
+        /* Background */
+        background-color: #161616;
+        /* Border */
+        border-radius: 2.5rem;
+        /* Overflow */
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobileOnlyContainer,
+    .contentArea {
+        /* Border */
+        border-radius: 2rem;
+    }
 }
