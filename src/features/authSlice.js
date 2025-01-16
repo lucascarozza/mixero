@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { authenticateUser, getRefreshToken, getToken } from "../api/authApi";
+import { authenticateUser, getRefreshToken, getToken, logOut } from "../api/authApi";
 
 /*
  * This async thunk initiates the login process.
@@ -16,6 +16,19 @@ export const initiateLogIn = createAsyncThunk(
     await getRefreshToken();
   }
 );
+
+/* This async thunk initiates the logout process.
+
+ * Steps:
+ * 1. Calls the logOut function to start the logout flow.
+ *
+ */
+export const initiateLogOut = createAsyncThunk(
+  "auth/initiateLogOut",
+  async () => {
+    logOut();
+  }
+)
 
 /*
  * This async thunk handles token exchange after authentication.
@@ -63,24 +76,7 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    /*
-     * Resets the authentication state upon log out.
-     *
-     * Steps:
-     * 1. Sets accessToken, refreshToken, expiresIn, and expires to null.
-     * 2. Sets status to "idle" and error to null.
-     * 
-     */
-    handleLogOut: (state) => {
-      state.accessToken = null;
-      state.refreshToken = null;
-      state.expiresIn = null;
-      state.expires = null;
-      state.status = "idle";
-      state.error = null;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(initiateLogIn.pending, (state) => {
@@ -114,10 +110,23 @@ const authSlice = createSlice({
         // Sets the status to "failed" and stores the error message if the callback fails.
         state.status = "failed";
         state.error = action.error.message;
-      });
+      })
+      .addCase(initiateLogOut.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(initiateLogOut.fulfilled, (state, action) => {
+        state.accessToken = null;
+        state.refreshToken = null;
+        state.expiresIn = null;
+        state.expires = null;
+        state.status = "idle";
+        state.error = null;
+      })
+      .addCase(initiateLogOut.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
   },
 });
-
-export const { handleLogOut } = authSlice.actions;
 
 export default authSlice.reducer;

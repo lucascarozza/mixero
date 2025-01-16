@@ -1,6 +1,6 @@
 // Styles import
 import styles from "./Playlist.module.css";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaSpotify } from "react-icons/fa";
 // Components import
 import Tracklist from "../Tracklist/Tracklist";
 // Functional imports
@@ -24,15 +24,15 @@ const Playlist = () => {
   const dispatch = useDispatch();
   const { name, tracks, status } = useSelector((state) => state.playlist);
 
-  /* 
+  /*
    * Handles playlist name changes.
    *
-   * Steps: 
+   * Steps:
    * 1. Sanitizes the new name value from the input field.
    * 2. Dispatches updateName action with the sanitized value.
-   * 
+   *
    * @param {Event} e - The event object from the input field.
-   * 
+   *
    */
   const handleNameChange = (e) => {
     const sanitizedName = e.target.value.replace(/[^\w\s.,-]/gi, "");
@@ -54,6 +54,7 @@ const Playlist = () => {
     <div className={styles.playlist}>
       <form
         className={styles.playlistName}
+        name="Playlist Name"
         onSubmit={(e) => e.preventDefault()}
       >
         <FaEdit className={styles.editIcon} />
@@ -66,17 +67,41 @@ const Playlist = () => {
         />
       </form>
       {/* Display playlist tracks */}
-      <Tracklist tracks={tracks} isPlaylistTracks={true} />
+      {tracks.length === 0 ? (
+        <div className={styles.noTracksPlaceholder}>
+          <p>add tracks when you're to start
+            <br />
+            creating your new playlist
+          </p>
+        </div>
+      ) : (
+        <Tracklist tracks={tracks} isPlaylistTracks={true} />
+      )}
       <div className={styles.actions}>
         <button
           className={styles.saveToSpotify}
           type="button"
+          title={
+            name.trim() === "" || tracks.length === 0
+              ? "Save To Spotify Disabled"
+              : "Save To Spotify"
+          }
           onClick={handleSaveToSpotify}
-          disabled={status === "loading"}
+          disabled={
+            name.trim() === "" || tracks.length === 0 || status === "loading"
+          }
         >
+          <FaSpotify className={styles.spotifyIcon} />
           {status === "loading" ? "Saving..." : "Save To Spotify"}
         </button>
       </div>
+      {name.trim() === "" && (
+        <p className={styles.warning}>
+          add a name to save your playlist
+          <br />
+          you can change it later on Spotify
+        </p>
+      )}
     </div>
   );
 };

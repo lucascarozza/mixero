@@ -162,30 +162,30 @@ export const getToken = async (code) => {
  * 4. Sets up a timer to refresh the access token 5 mins before expiry.
  */
 export const getRefreshToken = async () => {
-  const refreshToken = localStorage.getItem('refresh_token');
+  const refreshToken = localStorage.getItem("refresh_token");
   const url = tokenEndpoint;
   const payload = {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      "Content-Type": "application/x-www-form-urlencoded",
     },
     body: new URLSearchParams({
-      grant_type: 'refresh_token',
+      grant_type: "refresh_token",
       refresh_token: refreshToken,
-      client_id: clientId
+      client_id: clientId,
     }),
-  }
+  };
   const body = await fetch(url, payload);
   const response = await body.json();
-  
-  localStorage.setItem('access_token', response.accessToken);
+
+  localStorage.setItem("access_token", response.accessToken);
   if (response.refreshToken) {
-    localStorage.setItem('refresh_token', response.refreshToken);
+    localStorage.setItem("refresh_token", response.refreshToken);
   }
 
   const refreshTime = (response.expires_in - 300) * 1000;
   setTimeout(getRefreshToken, refreshTime);
-}
+};
 
 /*
  * Parses the URL query parameters to retrieve the authorization code on page load.
@@ -222,3 +222,14 @@ if (code) {
   const updateUrl = url.search ? url.href : url.href.replace("?", "");
   window.history.replaceState({}, document.title, updateUrl);
 }
+
+/*
+ * Logout
+ */
+export const logOut = () => {
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("refresh_token");
+  localStorage.removeItem("expires_in");
+  localStorage.removeItem("expires");
+  window.location.reload();
+};

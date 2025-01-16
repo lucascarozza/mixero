@@ -6,6 +6,8 @@ import { memo } from "react";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchTracks } from "../../features/searchSlice";
+// API imports
+import { currentToken } from "../../api/authApi";
 
 /*
  * Renders and manages the search functionality for songs, albums, or artists.
@@ -19,6 +21,8 @@ const SearchBar = () => {
   const [term, setTerm] = useState("");
 
   const dispatch = useDispatch();
+
+  const accessToken = currentToken.access_token;
 
   /*
    * Handles initiating the search process.
@@ -42,12 +46,13 @@ const SearchBar = () => {
 
   return (
     <form
-      className={styles.searchBar}
+      className={accessToken ? styles.searchBar : `${styles.searchBar} ${styles.searchBarDisabled}`}
+      name="Search"
       onSubmit={(e) => {
         e.preventDefault();
       }}
     >
-      <button className={styles.searchButton} type="button">
+      <button className={styles.searchButton} type="button" title="Search">
         <FaSearch />
       </button>
       <input
@@ -58,6 +63,7 @@ const SearchBar = () => {
         onChange={(e) => {
           setTerm(e.target.value);
         }}
+        disabled={accessToken ? false : true}
       ></input>
     </form>
   );

@@ -1,25 +1,58 @@
+/*
+ * SEARCHBAR.MODULE.CSS INDEX
+ * 1. Search bar styles....................10
+ * 2. Input styles.........................40
+ * 3. Search button styles.................63
+ * 4. Responsive styles....................XX
+ *
+ */
+
+/* 1. Search bar styles
+ * ..........................................
+ */
 .searchBar {
+    /* Layout */
     display: inline-flex;
-    background-color: white;
-    border-radius: 1.5rem;
+    /* Size */
+    width: 30rem;
     height: 3rem;
-    width: 25rem;
+    /* Colors */
+    background-color: white;
+    color: black;
+    /* Border */
+    border-radius: 1.5rem;
+    /* Overflow */
     overflow: hidden;
+    /* Transition */
     transition: all 300ms ease;
+    /* Opacity */
+    opacity: 1;
 }
 
-.searchBar:hover {
-    transform: scale(1.04);
+.searchBar:hover:not(.searchBarDisabled) {
+    transform: scale(1.02);
 }
 
+.searchBarDisabled {
+    opacity: 0.6;
+}
+
+/* 2. Search input styles
+ * ..........................................
+ */
 .searchInput {
+    /* Layout */
+    width: 100%;
+    height: 100%;
+    /* Spacing */
+    padding-right: 1rem;
+    /* Typography */
+    font-size: 1rem;
+    /* Background */
     background-color: transparent;
+    /* Border */
     border: none;
     outline: none;
-    font-size: 1rem;
-    height: 100%;
-    width: 100%;
-    padding-right: 1rem;
 }
 
 .searchInput:hover {
@@ -27,11 +60,19 @@
     outline: none;
 }
 
+/* 3. Search button styles
+ * ..........................................
+ */
 .searchButton {
+    /* Flexbox */
     display: flex;
     align-items: center;
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem;
+    /* Spacing */
     padding: 0 0.5rem 0 1rem;
+    /* Typography */
+    font-size: 1.5rem;
+    /* Background */
+    background-color: transparent;
+    /* Border */
+    border: none;
 }

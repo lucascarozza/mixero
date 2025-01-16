@@ -1,26 +1,87 @@
+/*
+ * SEARCHRESULTS.MODULE.CSS INDEX
+ * 1. Search results styles................10
+ * 2. Search title styles..................29
+ * 3. Highlight text styles................42
+ * 4. No tracks placeholder styles.........50
+ * 5. Search footer styles.................76
+ * 6. Responsive styles....................XX
+ *
+ */
+
+/* 1. Search results styles
+ * ..........................................
+ */
 .searchResults {
-  height: 100%;
+  /* Layout */
   width: 50%;
+  height: 100%;
+  
+  /* Spacing */
   padding: 1.5rem;
+  
+  /* Overflow */
   overflow-y: auto;
   scrollbar-gutter: stable;
+  
+  /* Cursor */
   cursor: default;
 }
 
+/* 2. Search title styles
+ * ..........................................
+ */
 .searchTitle {
+  /* Typography */
   color: gray;
   text-align: center;
   line-height: 1.5;
+  
+  /* Spacing */
   margin: 0.5rem 0 2rem 0;
 }
 
+/* 3. Highlight text styles
+ * ..........................................
+ */
 .highlight {
   color: white;
 }
 
+/* 4. No tracks placeholder styles
+ * ..........................................
+ */
+ .noTracksPlaceholder {
+  /* Flexbox */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Layout */
+  width: 100%;
+  height: 10rem;
+  /* Colors */
+  background-color: #2C2C2C;
+  /* Border */
+  border-radius: 2rem;
+}
+
+.noTracksPlaceholder p {
+  /* Typography */
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: gray;
+}
+
+/* Search footer styles
+ * ..........................................
+ */
 .searchFooter {
+  /* Typography */
   color: gray;
   text-align: center;
-  margin: 2rem 0 0.5rem 0;
   line-height: 1.5;
+  
+  /* Spacing */
+  margin: 2rem 0 0.5rem 0;
 }

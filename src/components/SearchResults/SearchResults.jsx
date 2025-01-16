@@ -35,7 +35,9 @@ const SearchResults = () => {
           </p>
         </>
       ) : (
-        <p className={styles.searchFooter}>search to begin</p>
+        <div className={styles.noTracksPlaceholder}>
+          <p>search for tracks to begin</p>
+        </div>
       )}
     </div>
   );

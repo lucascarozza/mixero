@@ -1,5 +1,16 @@
+/*
+ * TRACKLIST.MODULE.CSS INDEX
+ * 1. Tracklist styles......................7
+ *
+ */
+
+/* 1. Tracklist styles 
+ * ..........................................
+ */
 .tracklist {
+    /* Flexbox */
     display: flex;
     flex-direction: column;
+    /* Spacing */
     gap: 0.5rem;
 }
