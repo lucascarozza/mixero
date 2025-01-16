@@ -9,6 +9,7 @@ const ContentArea = () => {
   return (
       <section className={styles.contentArea}>
             <SearchResults />
+            <hr className={styles.mobileOnlyDivider} />
             <Playlist />
       </section>
   )

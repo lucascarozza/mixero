@@ -1,6 +1,7 @@
 /*
  * CONTENTAREA.MODULE.CSS INDEX
- * 1. Content area styles..................07
+ * 1. Content area styles..................08
+ * 2. Responsive styles....................30
  *
  */
 
@@ -19,4 +20,33 @@
     border-radius: 2.5rem;
     /* Overflow */
     overflow: hidden;
+}
+
+.mobileOnlyDivider {
+    /* Visibility */
+    display: none;
+}
+
+/* 2. Responsive styles
+ * ..........................................
+ */
+@media (max-width: 992px) {
+    .contentArea {
+        /* Flexbox */
+        display: flex;
+        flex-direction: column;
+        /* Layout */
+        height: auto;
+    }
+    
+    .mobileOnlyDivider {
+        /* Visibility */
+        display: block;
+        /* Layout */
+        width: 100%;
+        position: relative;
+        bottom: 0.5rem;
+        /* Colors */
+        border: 1px solid gray;
+      }
 }

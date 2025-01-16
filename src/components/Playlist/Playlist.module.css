@@ -8,7 +8,7 @@
  * 6. No tracks placeholder styles.........92
  * 7. Save To Spotify button styles.......117
  * 8. Warning text styles.................154
- * 9. Responsive styles...................XXX
+ * 9. Responsive styles...................166
  *
  */
 
@@ -161,4 +161,30 @@
     color: red;
     /* Spacing */
     padding-top: 1.5rem;
+}
+
+/* 9. Responsive styles
+ * ..........................................
+ */
+@media (max-width: 992px) {
+    .playlist {
+        /* Layout */
+        width: 100%;
+        height: 40rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .playlist {
+        /* Layout */
+        width: 100%;
+        height: 30rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .noTracksPlaceholder p {
+        /* Typography */
+        font-size: 1rem;
+    }
 }

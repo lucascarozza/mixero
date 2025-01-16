@@ -5,7 +5,7 @@
  * 3. Highlight text styles................42
  * 4. No tracks placeholder styles.........50
  * 5. Search footer styles.................76
- * 6. Responsive styles....................XX
+ * 6. Responsive styles....................88
  *
  */
 
@@ -16,14 +16,14 @@
   /* Layout */
   width: 50%;
   height: 100%;
-  
+
   /* Spacing */
   padding: 1.5rem;
-  
+
   /* Overflow */
   overflow-y: auto;
   scrollbar-gutter: stable;
-  
+
   /* Cursor */
   cursor: default;
 }
@@ -36,7 +36,7 @@
   color: gray;
   text-align: center;
   line-height: 1.5;
-  
+
   /* Spacing */
   margin: 0.5rem 0 2rem 0;
 }
@@ -51,7 +51,7 @@
 /* 4. No tracks placeholder styles
  * ..........................................
  */
- .noTracksPlaceholder {
+.noTracksPlaceholder {
   /* Flexbox */
   display: flex;
   align-items: center;
@@ -73,7 +73,7 @@
   color: gray;
 }
 
-/* Search footer styles
+/* 5. Search footer styles
  * ..........................................
  */
 .searchFooter {
@@ -81,7 +81,42 @@
   color: gray;
   text-align: center;
   line-height: 1.5;
-  
   /* Spacing */
   margin: 2rem 0 0.5rem 0;
+}
+
+/* 6. Responsive styles
+ * ..........................................
+ */
+@media (max-width: 992px) {
+  .searchResults {
+    /* Layout */
+    width: 100%;
+    height: 40rem;
+  }
+
+  .noTracksPlaceholder {
+    /* Layout */
+    height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .searchResults {
+      /* Layout */
+    width: 100%;
+    height: 30rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .noTracksPlaceholder {
+    /* Layout */
+    height: 100%;
+  }
+
+  .noTracksPlaceholder p {
+    /* Typography */
+    font-size: 1.3rem;
+  }
 }

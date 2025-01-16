@@ -5,7 +5,7 @@
  * 3. Actions container styles.............39
  * 4. Log in/out button styles.............51
  * 5. Logged in/out states styles..........74
- * 6. Responsive styles....................XX
+ * 6. Responsive styles....................86
  *
  */
 
@@ -81,4 +81,41 @@
 
 .loggedIn:hover {
   background-color: red;
+}
+
+/* 6. Responsive styles
+ * ..........................................
+ */
+@media (max-width: 992px) {
+  .header {
+    /* Flexbox*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    /* Layout */
+    height: 12rem;
+    /* Spacing */
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .actions {
+    /* Flexbox*/
+    justify-content: center;
+    /* Layout */
+    width: 100%;
+    margin: 0;
+    /* Spacing */
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    /* Spacing */
+    margin: 1.5rem 0 1rem 0;
+    padding: 0;
+  }
 }
