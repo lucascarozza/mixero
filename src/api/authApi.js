@@ -149,7 +149,7 @@ export const getToken = async (code) => {
     }),
   });
 
-  return await response.json();
+  return response.json();
 };
 
 /*
